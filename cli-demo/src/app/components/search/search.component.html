@@ -1,0 +1,15 @@
+<br>
+<br>
+<h1>欢迎访问 关键字搜索 search --> 双向数据绑定</h1>
+<hr>
+<section class="search-box">
+    <div class="search">
+        <div class="head">
+            <input type="search" name="keyWords" [(ngModel)]="keyWords" placeholder="请输入要搜索的关键字！" />
+            <input type="button" value="搜 索" (click)="onSearch()">
+        </div>
+        <ul class="list">
+            <li *ngFor="let item of history; let i = index;">{{item}}<i (click)="delHistory(i)">×</i></li>
+        </ul>
+    </div>
+</section>

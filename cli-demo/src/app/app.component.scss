@@ -1,0 +1,18 @@
+.root {
+    padding: 50px;
+    .app{
+        text-align: center;
+        .list{
+            a{
+                line-height: 60px;
+            }:hover{
+                transition: all .6s;
+                color: #25ab58;
+                font-size: 28px;
+            }
+        }
+    }
+    ul, li {
+        list-style: none;
+    }
+}
