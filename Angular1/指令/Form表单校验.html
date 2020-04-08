@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="APP">
+	<head>
+		<meta charset="utf-8">
+		<title>Form表单校验</title>
+		<link rel="stylesheet" type="text/css" href="../css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 18px;}
+		</style>
+	</head>
+	<body>
+		<h1>Form表单校验</h1><hr />
+		<pre>
+			
+		</pre>
+		<article class="am-container" ng-controller="ctrl">
+			<form action="" method="post" name="myForm" ng-submit="save()" >
+				<label>用户：<input type="text" name="Name" id="" value=""  ng-model="user.Name" required /></label>
+				<label>密码：<input type="password" name="Pwd" id="" value="" ng-model="user.Pwd" required /></label>
+				<input type="submit" value="提 交" ng-disabled="myForm.$invalid" />
+			</form>
+		</article>
+
+		<br /><br /><br /><br /><br /><br /><br /><br /><br />
+	</body>
+	<script src="../js/angular-1.5.7.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , []);
+			APP.controller('ctrl' , function($scope)
+			{
+				$scope.user = {Name:'' , Pwd:''}
+				$scope.save = function()
+				{
+					alert("保存数据！");
+				}
+			})
+	</script>
+	
+</html>

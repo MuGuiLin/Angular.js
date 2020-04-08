@@ -1,0 +1,63 @@
+﻿AngularJS是谷歌2009年着手，2012出的1.0版本，
+
+AngularJS 现在有2个版本，AngularJS1：针对WebMobile端， Angular 2：针对桌面应用程序（Mobile 和 desktop 移动端，PC端混合开发！）
+
+AngularJS 主要是
+
+
+
+
+AngularJS 指令是扩展的 HTML 属性，带有前缀 ng-。
+
+ng-app="程序入口，相当于C语言的main()函数，是最外最大的边界" 指令初始化一个 AngularJS 应用程序，标记了AngularJS脚本的作用域
+ng-init="" 指令初始化应用程序数据。
+
+ng-controller="管理者"，按制器（逻辑业务控制）
+
+ng-model="" （数据模型）把元素值（比如输入域的值）绑定到应用程序（用于绑定输入元素到模型中）。
+
+ng-view=""
+
+数据模型绑定：{{ 变量 }}  或  ng-bind="变量"（强例推荐用ng-bind，这样在页没加载完成时，用户看不到{{xxx}}了，体验更好哦！）
+
+
+ng-switch = "" //根据选中的值显示对应部分:
+ng-switch-when=“”如果匹配选中选择显示，其他为匹配的则移除。
+ng-switch-default 默认选项，如果都没有匹配的情况，默认选项会显示。
+
+ng-show =“表达式如 5 > 4 ” 指令在表达式为 true 时显示指定的 HTML 元素，否则隐藏指定的 HTML 元素。
+
+ng-click = “函数名( )”//点击事件
+ng-submit ="form提交" //提交按扭
+
+div{width: 100px; height: 100px; transition: all 1s; background: red;;}
+div:hover{transform: rotate(360deg) scale(2,2) skew(10deg,5deg);} 中间用空格隔开 旋转 缩放 扭曲 等同时执行多个效果！
+
+ng-repeat="m in mupiao" //ng-repeat="变量 in 数据" //循环输出json数据，可用于迭代循环数组的！
+
+表单判断：
+<inptu type="text" name="user_name" placeholder="请输入姓名" required ng-minlength="3">
+required html5必填属性
+ng-minlength="5"最小输多少
+ng-maxlength="8"最大输多少
+ng-pattern=""正则
+
+表单和控件可以验证输入的数据。
+
+
+我们使用了 ng-show指令， color:red 在邮件是 $dirty 或 $invalid 才显示。
+$pristine	【没修改】表单没有填写记录
+$dirty	【修改过】表单有填写记录
+$valid	【没修改】字段内容合法的
+$invalid	【验证成功】字段内容是非法的
+$error	【错误详情】
+
+
+---------------------JS部分---------------------
+
+var APP = angular.module('ng-app的名',[依赖注入模块 ])
+	APP.controller('管理者名',function($scope)
+	{
+		$scope.var_1 = '你好：';
+		$scope.var_2 = '世界！';
+	});

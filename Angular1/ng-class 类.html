@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS ng-repeat 数据循环输出</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 18px;}
+			ul li{ cursor: pointer; line-height: 50px;}
+			.am-container{ max-width: 1600px; }
+			.txtBlod{ font-weight: bold; color: blue;}
+			.red{color: red; line-height: 30px;}
+			.pink{color: #FF0089; font-weight: bold;}
+			.green{ color: green; font-weight: bold;}
+			.black{ color: white; background: black;}
+			.cyan{ color: black; background: cyan;}
+			.bg_red{ background: red;}
+			.bg_green{ background: green;}
+			
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>ng-class 为html元素动态的绑定一个或多个 CSS 类 </h1><hr />
+		<pre>
+			ng-class 指令用于给 HTML 元素动态绑定一个或多个 CSS 类。
+			ng-class 指令的值可以是字符串，对象，或一个数组。
+			如果是字符串，多个类名使用空格分隔。
+			如果是对象，需要使用 key-value 对，key 是一个布尔值，value 为你想要添加的类名。只有在 key 为 true 时类才会被添加。
+			如果是数组，可以由字符串或对象组合组成，数组的元素可以是字符串或对象。
+				  
+			 为指定元素设置：ng-class="red"
+			
+			隔行变色：
+			 为偶数行设置: ng-class-even="red"
+			 为奇数行设置: ng-class-odd="green"
+			 
+			   ng-class="{真：'做什么' , 假：'做什么'}[条件表达式]"；
+			 例：ng-class="{true:'pink', false:'red'}[m.sex == '女']"
+			 
+			点击事件(传参) 加 样式修改：
+			ng-click="djFN($index)" 
+			ng-class="{true:'black'}[$index == i]"> 
+			 
+		</pre>
+		<article class="am-container"  ng-controller="BOX">
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<ul class="am-avg-md-12 am-text-center" ng-class="{{txtBlod}}" > <!--css中的加粗样式，-->
+						<li>选择</li>
+						<li>序号</li>
+					  	<li>用户名</li>
+					  	<li>密码</li>
+					  	<li>性别</li>
+					  	<li>年龄</li>
+					  	<li>手机</li>
+					  	<li>微信</li>
+					  	<li>是否首条</li>
+					  	<li>是否尾条</li>
+					  	<li>不属于首尾</li>
+					  	<li>操 作</li>
+					</ul>
+				</div>
+			</div>
+			<div class="am-g">
+				<div class="am-u-md-12">			    <!--ng-repeat="变量 in 数据" //循环输出json数据-->
+					<ul class="am-avg-md-12 am-text-center" ng-repeat="m in mupiao"  
+						ng-class-even="red" 
+						ng-class-odd="green" 
+						ng-click="djFN($index)" 
+						ng-class="{true:'black'}[$index == i]"> 
+						<li><input type="checkbox" name="" id="" value="" /></li>
+						<li>{{$index}}</li>
+					  	<li>{{m.name}}</li>
+					  	<li>{{m.pwd}}</li>
+					  	<li>{{m.sex}}</li>
+					  	<li>{{m.age}}</li>
+					  	<li>{{m.mobile}}</li>
+					  	<li>{{m.wx}}</li>
+					  	<li ng-class="{true:'green' , false:'red'}[$first]">{{$first ?"是":"否"}}</li> <!--ng-class="{真：'做什么' , 假：'做什么'}[条件表达式]"-->
+					  	<li ng-class="{true:'green' , false:'red'}[$last]">{{$last ?"是":"否"}}</li>
+					  	<li ng-class="{true:'bg_green' , false:'bg_red'}[$middle]">{{$middle ?"是":"否"}}</li>
+					  	<li><input type="button" name="" id="" value="编 辑" /></li>
+					</ul>
+				</div>
+			</div>
+		</article>
+		
+		<br /><h1>AngularJS 在表格中 ng-repeat 数据循环输出</h1><hr />
+		<article class="am-container" ng-controller="BOX" >
+			<table class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover am-text-center" >
+				<thead>
+					<tr >
+						<th>选择</th>
+						<th>序号</th>
+					  	<th>用户名</th>
+					  	<th>密码</th>
+					  	<th>性别</th>
+					  	<th>年龄</th>
+					  	<th>手机</th>
+					  	<th>微信</th>
+					  	<th>是否首条</th>
+					  	<th>是否尾条</th>
+					  	<th>不属于首尾</th>
+					  	<th>操 作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="m in mupiao" ng-click="djFN2($index)" ng-class="{true:'cyan'}[$index == i]">
+						<td><input type="checkbox" name="" id="" value="" /></td>
+						<td>{{$index}}</td>
+					  	<td>{{m.name}}</td>
+					  	<td>{{m.pwd}}</td>
+					  	<td ng-class="{true:'pink'}[m.sex == '女']">{{m.sex}}</td>  <!--ng-class="{真：'做什么' , 假：'做什么'}[条件表达式]"-->
+					  	<td ng-class="{true:'red' , false:'green'}[m.age > 24]">{{m.age}}</td>
+					  	<td>{{m.mobile}}</td>
+					  	<td>{{m.wx}}</td>
+					  	<td ng-class="{true:'green' , false:'red'}[$first]">{{$first ?"是":"否"}}</td>
+					  	<td ng-class="{true:'green' , false:'red'}[$last]">{{$last ?"是":"否"}}</td>
+					  	<td ng-class="{true:'bg_green' , false:'bg_red'}[$middle]">{{$middle ?"是":"否"}}</td>  	
+					  	<td><input type="button" name="" id="" value="操 作" /></td>
+					</tr>
+				</tbody>
+				
+				
+			</table>
+		</article>
+	</body>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , [])
+		APP.controller('BOX' , function($scope)
+		{
+			$scope.txtBlod = "txtBlod"; //css中的加粗样式，
+			$scope.red = "red"; //css中的红色样式，
+			$scope.green = "green"; //css中的绿色样式，
+			$scope.pink = "pink";
+			$scope.black = "black";
+						
+			$scope.mupiao = [
+				{name:"小穆" , pwd:123456 , sex:"男" , age:25 , mobile:18198353918 , wx:"mupiao2018"},
+				{name:"张叶" , pwd:21269932 , sex:"女" , age:9 , mobile:13558793028 , wx:"zhangye"},
+				{name:"王小梦" , pwd:52770 , sex:"男" , age:53 , mobile:13508284555 , wx:"62356"},
+				{name:"郑琴" , pwd:05225 , sex:"女" , age:24 , mobile:1359568548 , wx:"Chai"},
+				{name:"杨三娃" , pwd:05225 , sex:"男" , age:35 , mobile:148345321 , wx:"yangwa"},
+				{name:"吴江" , pwd:05225 , sex:"男" , age:12 , mobile:1889314534 , wx:"wujiang"}
+			];
+			
+			$scope.djFN = function(obj)
+			{
+				$scope.i = obj;
+			};
+			
+			$scope.djFN2 = function(obj)
+			{
+				$scope.i = obj;
+			};
+		});
+	</script>
+</html>
+

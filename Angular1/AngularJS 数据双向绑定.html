@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 数据双向绑定</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{ text-align: center;}
+			pre{ font-size: 18px;}
+			.am-container{ max-width: 1300px;}
+			.bgcolor{ width: 500px; height: 200px; border: 1px solid gray;}
+			input[type=color],[type=range]{ width:300px; height: 50px;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>AngularJS 数据双向绑定</h1><hr />
+		<pre>
+			ng-controller="控制器"
+			ng-model="数据模型";
+			ng-view=";"
+			ng-click="点击事件";
+			ng-class="类";
+			ng-change="值改变事件";
+			ng-show="显示"; 
+			ng-hide="隐藏"; 
+		</pre>
+		<article class="am-container" ng-controller="content">
+			<div class="am-g">
+				<div class="am-u-md-6">
+					<section class="am-panel am-panel-primary">
+					  	<header class="am-panel-hd">
+					    	<h3 class="am-panel-title">数据双向绑定【可修改下面的内容，再看控制台！】</h3>
+					  	</header>
+					  	<section class="am-panel-bd">
+					 	   	<form class="am-form">
+					 	   		<div class="am-input-group am-input-group-primary">
+								  	<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+								  	<input type="text" class="am-form-field" placeholder="用户" ng-model="userInfo.user">
+								</div><br />
+								<div class="am-input-group am-input-group-primary">
+								  	<span class="am-input-group-label"><i class="am-icon-paw am-icon-fw"></i></span>
+								  	<input type="password" class="am-form-field" placeholder="密码" ng-model="userInfo.pwd">
+								</div><br />
+								<div class="am-input-group am-input-group-primary">
+								  	<span class="am-input-group-label"><i class="am-icon-envelope am-icon-fw"></i></span>
+								  	<input type="email" class="am-form-field" placeholder="邮箱" ng-model="userInfo.email">
+								</div><br />
+								<div class="am-input-group am-input-group-primary">
+								  	<span class="am-input-group-label"><i class="am-icon-phone-square am-icon-fw"></i></span>
+								  	<input type="number" class="am-form-field" placeholder="手机" ng-model="userInfo.mobile">
+								</div><br />
+								<div class="am-checkbox">
+								    <label> <input type="checkbox" ng-model="userInfo.autologin"> 记住信息！</label>
+							    </div>
+								<button type="button" class="am-btn am-btn-primary" ng-click="getloginbtn()"><i class="am-icon-cog am-icon-spin"></i> 获取表单中的值到控制台</button>
+								<button type="reset" class="am-btn am-btn-warning"><i class="am-icon-cog am-icon-spin"></i> 重置表单</button>
+								<button type="button" class="am-btn am-btn-success" ng-click="setloginbtn()"><i class="am-icon-cog am-icon-spin"></i> 修改表单中的值到控制台</button>
+					 	   	</form>
+					  	</section>
+					</section>
+				</div>
+				
+				<div class="am-u-md-6">
+					<h1 style="color: {{color1}};">动态修改文字颜色</h1>
+					<textarea style="background: {{color1}}; color: {{color2}}; font-size: {{wzdw}}px; overflow: hidden;" class="bgcolor">ng-change事件  要配合 ng-model 才有效果哦！文字大小：{{wzdw}}</textarea><br />	
+					
+					前景色：<input type="color" id="" value="#FF009B" ng-model="wz_col" ng-change="wz_colNF(this)" />
+					<br /><br />
+					字大小：<input type="range" id="" value="0" min="1" max="100" ng-model="dx_size" ng-change="dx_sizeFN(this)" />{{wzdw}}px
+					<br /><br />
+					背景色：<input type="color" id="" value="#FF009B" ng-model="bg_col" ng-change="bg_colFN(this)" />
+				</div>
+			</div>
+			
+			<div class="am-g">
+				<div class="am-u-md-6">
+					<button type="button" class="am-btn am-btn-primary am-round"  ng-click="showFN()"><i class="am-icon-eye "></i> 显示元素 </button>
+					<button type="button" class="am-btn am-btn-success am-round" ng-click="shorhiFN()"> 显示 <i class="am-icon-adjust am-icon-spin"></i> 隐藏</button>
+					<button type="button" class="am-btn am-btn-danger am-round" ng-click="hideFN()"><i class="am-icon-eye-slash "></i> 隐藏元素</button>
+					<br /><br />
+					<section class="am-panel am-panel-primary" ng-show="show" ng-hide="hide" >
+					  	<header class="am-panel-hd">
+					    	<h3 class="am-panel-title">ng-show="显示" ， ng-hide="隐藏"</h3>
+					  	</header>
+					  	<section class="am-panel-bd">
+							<img src="img/angularjs.png"/>
+						</section>
+					</section>
+				</div>
+				
+			</div>
+		</article>
+	</body>
+	
+	<script src="js/angular.1.7.9.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="js/angular-route.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , []);
+			APP.controller('content' , function($scope )
+			{
+				$scope.userInfo = {
+					user : "mupiao",
+					pwd : "123456",
+					email :"muguli2008@qq.com",
+					mobile : 18198353918,
+					autologin : true
+				}
+				
+				$scope.getloginbtn = function()
+				{
+					alert($scope.userInfo + " 请打开控制台查看！");
+					console.log($scope.userInfo);
+				}
+				
+				$scope.setloginbtn = function()
+				{
+					$scope.userInfo = {
+						user : "穆飘",
+						pwd : "123456789",
+						email :"mupiao2018@163.com",
+						mobile : 13558793025,
+						autologin : false
+					}
+					console.log($scope.userInfo);
+				}
+				
+				$scope.bg_colFN = function(obj)
+				{
+					//alert($scope.bg_col);
+					$scope.color1 = $scope.bg_col;
+				}
+				
+				$scope.dx_sizeFN = function(obj)
+				{
+					//alert($scope.dx_size);
+					$scope.wzdw = $scope.dx_size;
+				}
+				
+				$scope.wz_colNF = function(obj)
+				{
+					//alert($scope.wz_col);
+					$scope.color2 = $scope.wz_col;
+				}
+				
+				$scope.hide = true;
+				
+				$scope.showFN = function()
+				{
+					$scope.show = true;
+					$scope.hide = false;
+				}
+				
+				$scope.shorhiFN = function()
+				{
+					if(!$scope.show)
+					{
+						$scope.show = true;
+					}
+					else
+					{
+						$scope.show = false;
+					}
+				}
+				
+				$scope.hideFN = function()
+				{
+					$scope.hide = true;
+					$scope.show = false;
+				}
+			})
+			
+	</script>
+</html>

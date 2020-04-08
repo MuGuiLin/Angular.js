@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="MyModule">
+	<head>
+		<meta charset="utf-8">
+		<title>directive 自定义标签，属性，类名</title>
+		<link rel="stylesheet" type="text/css" href="../css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 18px;}
+		</style>
+	</head>
+	<body>
+		<h1>directive 自定义标签，属性，类名</h1><hr />
+		<pre>
+			<img src="restrict 匹配模式.jpg" width="600"/>
+			
+			html:
+			《mupiao》 《/mupiao》
+			《div mupiao》 《/div》
+			《div class="mupiao"》 《/div》
+			《!-- directive:mupiao --》//注：中间有空格的哦！
+			《div》 《/div》
+			
+			var APP = angular.module('MyModule' ,[]);
+			APP.directive('mupiao' , function(){
+				return {
+					restrict : "AEMC", //A：属性，E：元素，M：注释，C：样式类
+					template : "《div》我是自定标签哦，实际上我是DIV!《/div》",
+					replace : true
+				}
+			});
+		</pre>
+		<article class="am-container">
+			<mupiao></mupiao>
+			<div mupiao></div>
+			<div class="mupiao"></div>
+			<!-- directive:mupiao -->
+			<div></div>
+			
+			<br /><br /><br /><br /><br /><br />
+		</article>
+	</body>
+	<script src="../js/angular-1.5.7.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('MyModule' ,[]);
+			APP.directive('mupiao' , function(){
+				return {
+					restrict : "AEMC",//A：属性，E：元素，M：注释，C：样式类
+					template : "<div>我是自定标签哦，实际上我是DIV!</div>",
+					replace : true
+				}
+			});
+	</script>
+	
+</html>

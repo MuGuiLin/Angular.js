@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app>
+             <!--
+             	作者：muguli2008@qq.com
+             	时间：2016-07-12
+             	描述：AngularJS 
+             	
+             	ng-app //当加载该页时，标记ng-app告诉AngularJS处理整个HTML页并引导应用
+             -->
+	<head>
+		<meta charset="utf-8">
+		<title>hello AngularJS</title>
+		<style type="text/css">
+			*{box-sizing: border-box; font-family: "微软雅黑";}
+			h1{text-align: center; background: url(img/angularjs.png) no-repeat center top; font-weight: normal; font-size:26px;  height: 120px; padding-top: 80px; }
+			div{font-size: 24px;color: red;}
+			span{color: blue; font-weight: bold;}
+			textarea{width: 500px; height: 80px; vertical-align: middle;}
+			pre{font-size: 18px; }
+		</style>
+	</head>
+	<script src="http://code.angularjs.org/angular-1.0.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		
+		<h1>初识 AngularJS</h1><hr />
+		hello{{'小穆'}}!
+		<br /><br />
+		
+		<label>内容：</label>	<textarea ng-model="mupiao" placeholder="请输入内容" ></textarea> 双向数据绑定:ng-model="mupiao", mupiao//模型变量 , 
+		<div>您输入的内容是：<span>{{mupiao || ''}}</span></div>
+		
+		<pre>
+		AngularJS 是由 Google 的员工 Miško Hevery 从 2009 年开始着手开发,版本 1.0 是在 2012 年发布的。 AngularJS 通过新的属性和表达式扩展了 HTML。
+		AngularJS 是一个 JavaScript 框架。它可通过 《script》 标签添加到 HTML 页面。AngularJS 通过 指令 扩展了 HTML，且通过 表达式 绑定数据到 HTML。
+		
+		<h2>什么是 AngularJS？</h2>
+		AngularJS 使得开发现代的单一页面应用程序（SPAs：Single Page Applications）变得更加容易。
+		AngularJS 把应用程序数据绑定到 HTML 元素。
+		AngularJS 可以克隆和重复 HTML 元素。
+		AngularJS 可以隐藏和显示 HTML 元素。
+		AngularJS 可以在 HTML 元素"背后"添加代码。
+		AngularJS 支持输入验证。
+		
+		<h2>简单的说 AngularJS 就两件事，1、数据注入。  2、数据绑定。</h2>
+		
+		<h2>AngularJS 扩展了 HTML</h2>
+		AngularJS 通过 ng-directives 扩展了 HTML。
+		ng-app 指令定义一个 AngularJS 应用程序。
+		ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+		ng-bind 指令把应用程序数据绑定到 HTML 视图。
+		
+		<h2>AngularJS 表达式 (AngularJS 使用 表达式 把数据绑定到 HTML。)</h2>
+		AngularJS 表达式写在双大括号内：{{ expression }}。
+		AngularJS 表达式把数据绑定到 HTML，这与 ng-bind 指令有异曲同工之妙。
+		AngularJS 将在表达式书写的位置"输出"数据。
+		AngularJS 表达式 很像 JavaScript 表达式：它们可以包含文字、运算符和变量。
+		实例 {{ 5 + 5 }} 或 {{ firstName + " " + lastName }}
+		
+		<h2>AngularJS应用的解析:</h2>
+
+		本节描述AngularJS应用程序的<mark>三</mark>个组成部分，并解释它们如何映射到模型-视图-控制器设计模式：
+		
+		<mark>模板（Templates）</mark>
+		
+		模板是您用HTML和CSS编写的文件，展现应用的视图。 您可给HTML添加新的元素、属性标记，作为AngularJS编译器的指令。 AngularJS编译器是完全可扩展的，这意味着通过AngularJS您可以在HTML中构建您自己的HTML标记！
+		
+		<mark>应用程序逻辑（Logic）和行为（Behavior）</mark>
+		
+		应用程序逻辑和行为是您用JavaScript定义的控制器。AngularJS与标准AJAX应用程序不同，您不需要另外编写侦听器或DOM控制器，因为它们已经内置到AngularJS中了。这些功能使您的应用程序逻辑很容易编写、测试、维护和理解。
+		
+		<mark>模型数据（Data）</mark>
+		
+		模型是从AngularJS作用域对象的属性引申的。模型中的数据可能是Javascript对象、数组或基本类型，这都不重要，重要的是，他们都属于AngularJS作用域对象。
+		
+		AngularJS通过作用域来保持数据模型与视图界面UI的双向同步。一旦模型状态发生改变，AngularJS会立即刷新反映在视图界面中，反之亦然。
+		
+		此外，AngularJS还提供了一些非常有用的服务特性：
+		
+		底层服务包括依赖注入，XHR、缓存、URL路由和浏览器抽象服务。
+		您还可以扩展和添加自己特定的应用服务。
+		这些服务可以让您非常方便的编写WEB应用。
+		</pre>
+	</body>
+</html>

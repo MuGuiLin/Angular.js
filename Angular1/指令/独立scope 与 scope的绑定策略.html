@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html ng-app="APP">
+	<head>
+		<meta charset="utf-8">
+		<title>独立scope 与 scope的绑定策略</title>
+		<link rel="stylesheet" type="text/css" href="../css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 18px;}
+			mupiao{ font-size: 36px; line-height: 50px;}
+		</style>
+	</head>
+	<body>
+		<h1>独立scope 与 scope的绑定策略</h1><hr />
+		<pre>
+			<img src="scope的绑定策略.jpg" width="600"/>
+		</pre>
+		<article class="am-container" >
+			<h2>没独立scope之前：</h2>
+			<label></label>
+			<label></label>
+			<label></label>
+			<label></label>
+		</article>
+		<br /><br />
+		<article class="am-container">
+			<h2>没独立scope之后：</h2>
+			<mupiao></mupiao>
+			<mupiao></mupiao>
+			<mupiao></mupiao>
+			<mupiao></mupiao>
+		</article>
+		
+		
+		<br /><br /><br /><br />
+		
+		
+		<article class="am-container" ng-controller="ctrlA">
+			<h2>scope绑定策略 @方式：</h2>
+			<direct1>{{BangDing}}</direct1>
+		</article>
+		
+		<br /><br />
+		
+		<article class="am-container" ng-controller="ctrlB">
+			<h2>scope绑定策略 =方式：双向绑定【改变控制器时，指令也跟着变，而改变指令时，控制器也跟着变】</h2>
+			Ctrl控制器：<input type="text" ng-model="BangDing" /><br /><br />
+			Directive指令：<direct2 flavor="BangDing"></direct2>
+		</article>
+		
+		<br /><br />
+		
+		<article class="am-container" ng-controller="ctrlC">
+			<h2>scope绑定策略 &方式：【把输入的值获取出来！】</h2>
+			<direct3 admin="myhello(name)"></direct3>
+			<direct3 admin="myhello(name)"></direct3>
+			<direct3 admin="myhello(name)"></direct3>
+		</article>
+
+		<br /><br /><br /><br /><br /><br /><br /><br /><br />
+	</body>
+	<script src="../js/angular-1.5.7.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , []);
+			APP.directive('label' , function()
+			{
+				return {
+					restrict : "AE",
+					template : '<div>input框：<input type="text" ng-model="text"/>{{text}}</div>',
+					replace : true
+				}
+			});
+			
+			APP.directive('mupiao' , function()
+			{
+				return {
+					restrict : "AE",
+					scope:{}, //这就是独立scope
+					template : '<div>input框：<input type="text" ng-model="text2"/>{{text2}}</div>',
+					replace : true
+				}
+			});
+			
+			APP.controller('ctrlA' , function($scope)
+			{
+				$scope.BangDing = "小穆"; //把BangDing传递给下面的flavor指令
+			});
+			
+			APP.directive('direct1' , function( attr)
+			{
+				return {
+					restrict : "AE",
+					scope : {
+						flavor : "@"
+					},
+					template : '<div>{{flavor}}</div>'
+//					,
+//					link : function(scope , element , attrs)
+//					{
+//						scope.flavor = attrs.flavor;
+//					}
+				}
+			});
+			
+			APP.controller('ctrlB' , function($scope)
+			{
+				$scope.BangDing = "双向绑定"; //把BangDing传递给下面的flavor指令
+			});
+			
+			APP.directive('direct2' , function()
+			{
+				return {
+					restrict : "AE",
+					scope : {
+						flavor : "="
+					},
+					template : '<input type="text" ng-model="flavor" />'
+				}
+			});
+			
+			APP.controller('ctrlC' , function($scope)
+			{
+				$scope.myhello = function(name)
+				{
+					alert("你好:" + name);
+				}
+			})
+			APP.directive('direct3' , function()
+			{
+				return {
+					restrict : "AE",
+					scope : {
+						admin : "&"
+					},
+					template : '<input type="text" ng-model="userName"/><input type="button" value="查 看" ng-click="admin({name:userName})"/>'
+				}	
+			});
+			
+			
+	</script>
+	
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 过滤器</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 18px;}
+			.am-container{ max-width: 1600px; }
+			.red{color: red; line-height: 30px;}
+			.pink{color: #FF0089; font-weight: bold;}
+			.green{ color: green; font-weight: bold;}
+			.cyan{ color: black; background: cyan;}
+			.bg_red{ background: red;}
+			.bg_green{ background: green;}
+			
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>AngularJS 过滤器 </h1><hr />
+		<pre>
+			输入过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中，该过滤器后跟一个 冒号(:)和一个模型名称(条件)。
+			
+			语法：
+			1、{ {expression(表达式 ) | filter(过滤)}}
+			2、{ {expression(表达式 ) | filter1(过滤) | filter2(过滤) 。。。}}
+			3、{ {expression(表达式 ) | filter(过滤)：条件 1 : 条件 2}}
+
+			currency	(货币符号)格式化数字为货币格式。 例：{ {m.pwd | currency : "￥"}}人民币 ， { {m.pwd | currency}}美元
+			filter	查询(从数组项中选择一个子集)。例： { {mupiao | filter : '女'}}(在json中取出所有 女 的)
+			limitTo 提取(限制数组或字符串的长度){ {m.mobile | limitTo :'3'}}(只显示3个字)
+			
+			number 数字 (格式化数字) 例： { {3.1415926 | number : 2}}(保留两位小数)
+			data 日期
+			
+			uppercase	大写(格式化字符串为大写) 例：{ {m.wx | uppercase}} (将小定字母转为大写字母)。
+			lowercase	小写(格式化字符串为小写) 例：{ {m.wx | lowercase}} (将大定字母转为小写字母)。
+			
+			orderBy	排序（根据某个表达式排列数组）例：ng-repeat="m in mupiao | orderBy : '-age'"(从大到小)。
+		</pre>
+		
+		{{m.mobile | limitTo :'3'}}
+		<br /><h1>AngularJS 在表格中 ng-repeat 数据循环输出</h1><hr />
+		<article class="am-container" ng-controller="BOX" >
+			<table class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover am-text-center" >
+				<thead>
+					<tr >
+						<th>选择 <input type="checkbox" name="checkBox" id="checkBox" ng-click="chFN()" value="" /></th>
+						<th>序号</th>
+					  	<th>用户名</th>
+					  	<th>密码</th>
+					  	<th>性别</th>
+					  	<th>年龄(-大到小排序)</th>
+					  	<th>手机(取前3个字)</th>
+					  	<th>微信(大写过滤)</th>
+					  	<th>是否首条</th>
+					  	<th>是否尾条</th>
+					  	<th>不属于首尾</th>
+					  	<th>操 作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="m in mupiao | orderBy : '-age'" ng-click="djFN2($index)" ng-class="{true:'cyan'}[$index == i]">
+						<td><input type="checkbox" name="check" id="" value="" /></td>
+						<td>{{$index}}</td>
+					  	<td>{{m.name }}</td>
+					  	<td>{{m.pwd | currency : "￥"}}</td>
+					  	<td ng-class="{true:'pink'}[m.sex == '女']">{{m.sex}}</td>  <!--ng-class="{真：'做什么' , 假：'做什么'}[条件表达式]"-->
+					  	<td ng-class="{true:'red' , false:'green'}[m.age > 24]">{{m.age}}</td>
+					  	<td>{{m.mobile | limitTo :'3'}}</td>
+					  	<td>{{m.wx | uppercase}}</td>
+					  	<td ng-class="{true:'green' , false:'red'}[$first]">{{$first ?"是":"否"}}</td>
+					  	<td ng-class="{true:'green' , false:'red'}[$last]">{{$last ?"是":"否"}}</td>
+					  	<td ng-class="{true:'bg_green' , false:'bg_red'}[$middle]">{{$middle ?"是":"否"}}</td>  	
+					  	<td><input type="button" name="" id="" value="操 作" /></td>
+					</tr>
+					例： {{mupiao | filter : '女'}}(在json中取出所有 女 的)<br /><br />
+					例： { {3.1415926 | number : 2}}(保留两位小数)
+				</tbody>
+				
+				
+				
+			</table>
+		</article>
+	</body>
+	<script src="js/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		var APP = angular.module('APP' , [])
+		APP.controller('BOX' , function($scope)
+		{
+			$scope.txtBlod = "txtBlod"; //css中的加粗样式，
+			$scope.red = "red"; //css中的红色样式，
+			$scope.green = "green"; //css中的绿色样式，
+			$scope.pink = "pink";
+			$scope.black = "black";
+						
+			$scope.mupiao = [
+				{name:"小穆" , pwd:123456 , sex:"男" , age:25 , mobile:18198353918 , wx:"mupiao2018"},
+				{name:"张叶" , pwd:21269932 , sex:"女" , age:9 , mobile:13558793028 , wx:"zhangye"},
+				{name:"王小梦" , pwd:52770 , sex:"男" , age:53 , mobile:13508284555 , wx:"62356"},
+				{name:"郑琴" , pwd:05225 , sex:"女" , age:24 , mobile:1359568548 , wx:"Chai"},
+				{name:"杨三娃" , pwd:05225 , sex:"男" , age:35 , mobile:148345321 , wx:"yangwa"},
+				{name:"吴江" , pwd:05225 , sex:"男" , age:12 , mobile:1889314534 , wx:"wujiang"}
+			];
+			
+			$scope.djFN = function(obj)
+			{
+				$scope.i = obj;
+			};
+			
+			$scope.djFN2 = function(obj)
+			{
+				$scope.i = obj;
+			};
+			
+			$scope.chFN = function()
+			{
+				var check = $('input[name = check]');
+				for(var i = 0; i <= check.length; i++)
+				{
+					if(check[i].checked == true)
+					{
+						check[i].checked = false;
+					}
+					else
+					{
+						check[i].checked = true;
+					}
+				}
+			}
+		});
+		
+		
+	</script>
+</html>
+

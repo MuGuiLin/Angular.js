@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$cacheFactory 缓存 (内置对象)</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{ font-size: 18px;}
+			.am-container{ max-width: 1200px;}
+			textarea{ width: 600px; height: 300px;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>$cacheFactory 缓存 (内置对象)</h1><hr />
+		<pre>
+			
+		</pre>
+		
+		<article class="am-container" ng-controller="test">	
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<div class="am-input-group am-input-group-primary">
+					  	<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+					  	<input type="text" class="am-form-field" placeholder="请输入要缓存的内容" ng-model="inputText">
+						<span class="am-input-group-btn">
+					       	<button type="button" class="am-btn am-btn-primary" ng-click="InsertCH()"><i class="am-icon-cog"></i> 设置缓存</button>
+							<button type="button" class="am-btn am-btn-success" ng-click="SelectCH()"><i class="am-icon-cloud-download"></i> 查看缓存</button>
+							<button type="button" class="am-btn am-btn-danger" ng-click="DeleteCH()"><i class="am-icon-trash"></i> 删除缓存</button>
+
+					   </span>   
+					</div>	
+				</div>
+			</div>
+			<br /><br />
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<textarea>{{showcache}}</textarea>
+				</div>
+			</div>
+			<br /><br /><br /><br /><br /><br />
+			
+		</article>
+	</body>
+	<script src="js/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP',[])
+			//以对象的形来写，也可以在下边直接注入$cacheFactory
+			APP.service('cache' , function($cacheFactory){
+				return $cacheFactory('text')
+			});
+			
+			APP.controller('test',function($scope , cache) //$cacheFactory
+			{
+
+				
+				$scope.InsertCH = function()
+				{
+					if(!$scope.inputText)
+					{
+						alert("请输入缓存内容！");
+						return false;
+					}
+					else
+					{
+						cache.put('SaveTxt' , $scope.inputText); //将input框中的内容保存在SaveTxt中;
+						alert("缓存设置成功！");
+					}
+				}
+				
+				$scope.SelectCH = function()
+				{
+					if(!cache.get('SaveTxt'))
+					{
+						alert("对不起：当前没有缓存内容！");
+						return false;
+					}
+					else
+					{
+						$scope.showcache = cache.get('SaveTxt'); //把存储的内容取出来;
+					}
+				}
+				
+				$scope.DeleteCH = function()
+				{
+					cache.remove('SaveTxt'); //删除指定的缓存;
+					$scope.showcache = cache.get('SaveTxt'); //读取一下还有没有
+				}
+			
+			});
+
+	</script>
+</html>

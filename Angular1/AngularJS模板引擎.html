@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS模板引擎</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>AngularJS 模板引擎</h1><hr />
+		
+		<!--text/ng-template //这就是AngularJS 的模板引擎  , id 就是对应的 src-->
+		<script type="text/ng-template" id="mupiao">
+			<li><a href="{{url}}"><i class="am-icon-book am-icon-fw"></i> {{txt}}</a></li>
+		    <li><a href="{{url}}"><i class="am-icon-home am-icon-fw"></i> {{url}}</a></li>
+		    <li><a href="{{url}}"><i class="am-icon-pencil am-icon-fw"></i> {{txt}}</a></li>
+		    <li><a href="{{url}}"><i class="am-icon-internet-explorer am-icon-fw"></i> {{url}}</a></li>
+		</script>
+		
+		<article class="am-container"  ng-controller="list">
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<ul class="am-list c am-list-border am-list-striped" ng-include src="'mupiao'"> <!--ng-include src="'这里要用单引括起来'"-->
+					   
+					</ul>
+				</div>
+			</div>
+		</article>
+	</body>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , [])
+		APP.controller('list' , function($scope)
+		{
+			$scope.url = 'http://www.2345.com/?kmupiao';
+			$scope.txt = '每个人都有一个死角， 自己走不出来，别人也闯不进去。';
+		});
+	</script>
+</html>

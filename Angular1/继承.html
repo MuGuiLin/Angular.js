@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 继承</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+	</head>
+	<body ng-app="myAPP">
+		<article class="am-container" ng-controller="baba">
+			<h2>AngularJS 继承【子级 继承 父级】</h2><hr />
+			<div class="am-g am-text-center" ng-controller="erzi">
+			    <div class="am-u-sm-6">{{var_1}}</div>
+			    <div class="am-u-sm-6">{{var_2}}</div>
+			</div>
+			<div class="am-g am-text-center" ng-controller="erzi">
+			    <div class="am-u-sm-3">{{var_1}}</div>
+			    <div class="am-u-sm-3">{{var_2}}</div>
+			    <div class="am-u-sm-3">{{var_1}}</div>
+			    <div class="am-u-sm-3">{{var_2}}</div>
+			</div>
+		
+		</article>
+	</body>
+	<script src="js/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('myAPP',[])
+		APP.controller('baba',function($scope)
+		{
+			$scope.var_1 = '你好：';
+			$scope.var_2 = '世界！';
+		});
+		
+		APP.controller('erzi',function($scope){});//在这里就不用定义子级的内容了，因为它继承了父级的内容！
+	</script>
+</html>

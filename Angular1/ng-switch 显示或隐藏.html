@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ng-switch 指令根据表达式显示或隐藏对应的部分</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			.box{width: 300px; height: 300px;}
+			.box li{width: 100px; height: 100px; transition: all 1s; text-align: center; line-height: 100px; cursor: pointer;}
+			.box li:hover{ transform: rotate(360deg) scale(2,2) skew(10deg,10deg); color: white;}
+		</style>
+	</head>
+	<body ng-app="">
+		<article class="am-container">
+			<h2>ng-switch="",ng-switch-when="", ,ng-switch-default 指令根据表达式显示或隐藏对应的部分</h2><hr />
+			<div class="am-g">
+				<div class="am-u-md-4">下拉多选框</div>
+				<div class="am-u-md-8">
+					<div class="am-form-group">
+					    <select id="doc-select-1" ng-model="mupiao">
+					        <option value="option1" selected="selected">--请选择--</option>
+					        <option value="option1">img 图片1</option>
+					        <option value="option2">img 图片2</option>
+					        <option value="option3">img 图片3</option>
+
+					    </select>
+					    <span class="am-form-caret"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<ul class="am-avg-sm-1 am-avg-md-3 am-avg-lg-2  am-thumbnails" ng-switch="mupiao">
+						<li ng-switch-default><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-4.jpg" /></li>
+					  	<li ng-switch-when="option1"><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" /></li>
+					  	<li ng-switch-when="option2"><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
+					  	<li ng-switch-when="option3"><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-3.jpg" /></li>	
+					</ul>
+				</div>
+			</div>
+			
+			<div class="am-g">
+				<div class="am-u-md-4">
+					<h2>等分网格</h2>
+					<pre>
+						与布局网格不同的是，这里的数字表示几等分，而不是占 12 等分中的几列，比如 .am-avg-sm-2 会将子元素 <li> 的宽度设置为 50%。
+
+						考虑到通用性（菜单、图片）等，《li》 没有设置 padding，使用时需根据需求自行设置。
+						
+						另外需要注意的 AVG Grid 只能用于 《ul》 / 《ol》 结构。
+					</pre>
+				
+				</div>
+				<div class="am-u-md-8">
+					<h2>这是《ul class="am-avg-lg-3 box"》</h2>
+					<ul class="am-avg-lg-3 box">
+						<li style="background: red;">1</li>
+						<li style="background: green;">2</li>
+						<li style="background: blue;">3</li>
+						<li style="background: purple;">4</li>
+						<li style="background: yellow;">5</li>
+						<li style="background: purple;">6</li>
+						<li style="background: blue;">7</li>
+						<li style="background: green;">8</li>
+						<li style="background: red;">9</li>
+					</ul>
+				</div>
+			</div>
+			
+		</article>
+	</body>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+	</script>
+</html>

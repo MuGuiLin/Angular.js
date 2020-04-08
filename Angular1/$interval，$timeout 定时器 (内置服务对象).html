@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$interval，$timeout 定时器 (内置服务对象)</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{ font-size: 18px;}
+			span{ font-size: 52px; color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>$interval(简隔定时)，$timeout 定时器 (内置服务对象)</h1><hr />
+		<pre>
+			在AngularJS中$interval用来处理间歇性处理一些事情。
+			
+			var APP = angular.module('APP',[])      //定时执行    超时执行
+			APP.controller('test',function($scope , $interval , $timeout) 
+			{
+				$scope.time = 0; 
+				$scope.mupiao = "";
+				$interval(function(){
+					$scope.time ++;
+				},1000); //隔1钟执行一次
+				
+				$timeout(function(){
+					$scope.mupiao = "我隔了5秒钟才弹出来，我只执行一次";
+					alert("我隔了5秒钟才弹出来，我只执行一次");
+				},5000);
+			});
+	
+		</pre>
+		
+		<article class="am-container" ng-controller="test">	
+			<div>$interval简隔定时：<span>{{time}}</span>【每简隔多少时间执行一次】</div>
+			<div>$timeout超时执行：{{mupiao}}【多少时间后只执行一次】</div>
+			
+		</article>
+	</body>
+	<script src="js/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP',[])
+			APP.controller('test',function($scope , $interval , $timeout) 
+			{
+				$scope.time = 0; 
+				$scope.mupiao = "";
+				$interval(function(){
+					$scope.time ++;
+					if($scope.time == 10)
+					{
+						alert("我执行了10次啦！");
+					}
+				},1000); //隔1钟执行一次
+				
+				$timeout(function(){
+					$scope.mupiao = "我隔了5秒钟才弹出来，我只执行一次";
+					alert("我隔了5秒钟才弹出来，我只执行一次");
+				},5000);
+			});
+
+	</script>
+</html>

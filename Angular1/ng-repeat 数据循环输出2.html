@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS ng-repeat 数据循环输出</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 24px;}
+			.am-container{ max-width: 1600px; }
+			
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>AngularJS ng-repeat 数据循环输出</h1><hr />
+		<pre>
+			{$index}}自动增加序号。
+			{$first ?"是":"否"}}判断是否 是第一条数据
+			{$last ?"是":"否"}}判断是否 是最后一条数据
+			{$middle ?"是":"否"}}判断是否 属于首条  尾条数据
+		</pre>
+		<article class="am-container"  ng-controller="BOX">
+							<div class="fixed-table-container shipping-price-tab">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th class="bs-checkbox " rowspan="2" tabindex="0">
+												<div class="th-inner ">
+													<input type="checkbox" ng-checked="isChecked()"  ng-click="toggleAll()">
+												</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner" style="width: 80px;">操作</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">起运港</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">中转港</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">目的港</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">生效日期</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">失效日期</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">起始级别</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">终止级别</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">级别划分计量单位</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th colspan="3" tabindex="0">
+												<div class="th-inner">T1</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th colspan="3" tabindex="0">
+												<div class="th-inner">T2</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th colspan="3" tabindex="0">
+												<div class="th-inner">T3</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th colspan="3" tabindex="0">
+												<div class="th-inner">T4</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">CISF</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">船期</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">航程</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">船公司</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">币种</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">直客/同行</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">价格趋势</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">推广说明</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">录入时间</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th rowspan="2" tabindex="0">
+												<div class="th-inner">备注</div>
+												<div class="fht-cell"></div>
+											</th>
+										</tr>
+										<tr>
+											<th tabindex="0" >
+												<div class="th-inner">体积价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">重量价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">最低价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">体积价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">重量价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">最低价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">体积价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">重量价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">最低价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">体积价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">重量价</div>
+												<div class="fht-cell"></div>
+											</th>
+											<th tabindex="0">
+												<div class="th-inner">最低价</div>
+												<div class="fht-cell"></div>
+											</th>
+										</tr>
+									</thead>
+									<tbody >
+										<tr><td colspan="32" style="height: 60px;" ng-show="InitShippings.length === 0">暂无数据</td></tr>
+										<tr ng-repeat="shipping in InitShippings track by $index">
+											<td class="bs-checkbox ">
+												<input type="checkbox" ng-checked="exists(shipping, selected)" ng-click="toggle(shipping, selected)">
+											</td>
+											<td>
+												<a ng-click="lookInforData(shipping)" href="javascript:;">查看</a>
+												<a href="javascript:;" ng-click="reviseData(shipping)">修改</a>
+											</td>
+											<td>{{shipping.name}}</td>
+											<td>{{shipping.transitPortEnglishName}}</td>
+											<td>{{shipping.destinationPortEnglishName}}</td>
+											<td>{{shipping.validTimeFrom | date:"yyyy-MM-dd"}}</td>
+											<td>{{shipping.validTimeTo | date:"yyyy-MM-dd"}}</td>
+											<td>{{shipping.gradeFrom}}</td>
+											<td>{{shipping.gradeTo}}</td>
+											<td>{{shipping.gradeUnit}}</td>
+											
+											<td>dfsd</td><!--T1 体积价-->
+											<td></td><!--T1 重量价-->
+											<td></td><!--T1 最低价-->
+											
+											<td></td><!--T2 体积价-->
+											<td></td><!--T2 重量价-->
+											<td>sdf</td><!--T2 最低价-->
+											
+											<td></td><!--T3 体积价-->
+											<td></td><!--T3 重量价-->
+											<td></td><!--T3 最低价-->
+											
+											<td></td><!--T4 体积价-->
+											<td></td><!--T4 重量价-->
+											<td></td><!--T4 体积价-->
+											
+											<td>{{shipping.cisfRate}}</td>
+											<td>{{shipping.sailSchedules}}</td>
+											<td>{{shipping.voyage}}</td>
+											<td>{{shipping.carrier}}</td>
+											<td>{{shipping.javaCurrency}}</td>
+											<td>{{shipping.consignee}}</td>
+											<td>{{shipping.priceTrend || priceTrend}}</td>
+											<td class="explain">{{shipping.remarks}}</td>
+											<td>{{shipping.recordTime | date:"yyyy-MM-dd hh:mm:ss"}}</td>
+											<td class="explain">{{shipping.description}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+		</article>
+	</body>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , [])
+		APP.controller('BOX' , function($scope)
+		{
+			$scope.InitShippings = [
+				{name:"小穆" , pwd:123456 , sex:"男" , age:25 , mobile:18198353918 , QQ:914026091 , wx:"mupiao2018" , info:"没信息"},
+				{name:"张叶" , pwd:21269932 , sex:"女" , age:20 , mobile:13558793028 , QQ:1695855628 , wx:"zhangye" , info:"没信息"},
+				{name:"王梦" , pwd:52770 , sex:"男" , age:53 , mobile:13508284555 , QQ:68541245 , wx:"62356" , info:"没信息"},
+				{name:"郑琴" , pwd:05225 , sex:"女" , age:24 , mobile:1359568548 , QQ:52985562 , wx:"Chai" , info:"没信息"}
+			];
+		});
+	</script>
+</html>

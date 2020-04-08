@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>service 基础</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{ font-size: 18px;}
+		</style>
+	</head>
+	<body ng-app="myAPP">
+		<h1>service 基础</h1><hr />
+		<pre>
+			在AngularJS 中你可以创建自己的服务，或使用内建服务，【服务】是一个函数 或 对象，可在你的 AngularJS 应用中使用。AngularJS 内建了30 多个服务。
+		常用服务：
+			value 变量
+			constant 常量
+			factory 工厂模式（函数对象）
+			service服务
+		</pre>
+		
+		<article class="am-container" ng-controller="test">
+			<p>value 变量: {{BL}}</p>
+			
+			<p>constant 常量: {{CL}}</p>
+			
+			<p>factory 工厂模式（函数）: {{FN.name}} , {{FN}}</p>
+			
+			<p>service服务（对象）: {{SV.name}}</p>
+			
+			<p>service服务（对象）: {{SV.admin()}}</p>
+
+		</article>
+	</body>
+	<script src="js/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('myAPP',[])
+		
+			APP.value('BieLiang' , '这是一个service的变量，这行后面不要加分号哦！')//定义变量
+			
+			APP.constant('ChangLiang' , '这是一个service的常量，这行后面不要加分号哦！')//定义常量
+			
+			APP.factory('MuPiaoFN' , function(){ //定义函数
+				return{//注意 用函数时，数据要写在return中哦！
+					name:'小穆',
+					age:25,
+					job:function(){
+						this.name = '职位',
+						alert("俺是做IT地！")
+					}
+				}
+			})
+			
+			APP.service('SerViceFN' , function(){ //定义对象 【这种常用】
+				this.name = '穆飘';
+				this.sex = '男';
+				this.admin = function(){
+					return '我是做工地的！';
+				}
+				
+			})
+			APP.controller('test',function($scope , BieLiang , ChangLiang , MuPiaoFN , SerViceFN) //将 mupiao变量注入到这里
+			{
+				$scope.BL = BieLiang; //引用变量并赋给
+				$scope.CL = ChangLiang; //引用常量并赋给
+				$scope.FN = MuPiaoFN;
+				MuPiaoFN.job();
+				
+				$scope.SV = SerViceFN;
+			});
+			
+			APP.controller('erzi',function($scope){});//在这里就不用定义子级的内容了，因为它继承了父级的内容！
+	</script>
+</html>

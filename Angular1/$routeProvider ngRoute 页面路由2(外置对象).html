@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$routeProvider ngRoute 页面路由</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{ text-align: center;}
+			pre{ font-size: 18px;}
+			.page{ width:100%; top: 0; bottom: 0; padding: 200px; text-align: center;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>$routeProvider ngRoute 页面路由</h1><hr />
+		<pre>
+			<h2>注意上面地址栏的最#后面的变化：[在当前页跳转]</h2>
+			<a href="#/$routeProviderA">$routeProviderA</a>
+			<a href="#/$routeProviderB">$routeProviderB</a>
+			<a href="#/$routeProviderC">$routeProviderC</a>
+		</pre>
+		
+		<!--<article class="page{{pageClass}}" ng-view></article>-->
+		
+		<article ng-controller="myCtrl">
+			<ng-view></ng-view>
+			<ul class="am-pagination am-pagination-centered">
+			  <li class="am-disabled"><a href="#">&laquo;</a></li>
+			  <li class="am-active"><a href="#/$routeProviderA">1</a></li>
+			  <li><a href="#/$routeProviderB">2</a></li>
+			  <li><a href="#/$routeProviderC">3</a></li>
+			  <li><a href="#">&raquo;</a></li>
+			</ul>
+		</article>
+		
+	</body>
+	<script src="js/angular-1.5.7.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/angular-route.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/angular-animate.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+								//引用      		  路由模块		动画模块      注：引用不同的模块时：一定要引入对应的JS文件(它是一个外置服务文件)！
+		var APP = angular.module('APP' , ['ngRoute' , 'ngAnimate']);
+		
+			APP.controller('myCtrl' , function($scope , $location)
+			{
+				$scope.$on('$viewContentLoaded' , function()
+				{
+					//alert("当ngView内容被重新加载时，从ngView作用域上发布！");
+					console.log("当ngView内容被重新加载时，从ngView作用域上发布！");
+				})
+				
+				$scope.$on('routeChangeStart' , function(event , next , current)
+				{
+					//alert("通过$location服务器 对 浏览器的地址更新是会触发 $locationChangeStart事件！");
+					console.log("当ngView内容被重新加载时，从ngView作用域上发布！");
+				})
+			});
+			
+			//配置路由表:
+			APP.config(function($routeProvider) //$routeProvider是Angular自身的路由机制，用来定义一个路由表（地址栏与视图模板的映射）
+			{
+				$routeProvider
+				.when('/$routeProviderA',{//路由跳转名称
+					templateUrl:'$routeProviderA.html',//映射模板跳转路径地址
+					controller:'PageA' //目标页面中的控制域 名称
+				})
+				.when('/$routeProviderB',{
+					templateUrl:'$routeProviderB.html',
+					controller:'PageB',
+					resolve:{ //指定当前controller所依赖的其他模块
+						mupiao:function($q , $timeout)//$q委托
+						{
+							var delay = $q.defer(); //有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。
+							$timeout(delay.resolve , 2000);//在指定时间后完成委托
+							return delay.promise; //Promise，是一个对象，用来传递异步操作的消息。它代表了某个未来才会知道结果的事件（通常是一个异步操作），并且这个事件提供统一的 API，可供进一步处理。
+						}
+					}
+				})
+				.when('/$routeProviderC',{
+					templateUrl:'$routeProviderC.html',
+					controller:'PageC'
+				})
+				.otherwise({
+					redirectTo:'$routeProviderA' //默认路由地址名称(默认首页)
+				})
+			})
+			
+	</script>
+</html>

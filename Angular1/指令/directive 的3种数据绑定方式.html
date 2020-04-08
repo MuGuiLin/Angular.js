@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="APP">
+	<head>
+		<meta charset="utf-8">
+		<title>directive 的3种数据绑定方式</title>
+		<link rel="stylesheet" type="text/css" href="../css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 18px;}
+		</style>
+	</head>
+	<body>
+		<h1>directive 的3种数据绑定方式</h1><hr />
+		<pre>
+			<img src="scope的绑定策略.jpg" width="600"/>
+		</pre>
+		
+		<article class="am-container" >
+			<h2>directive 的3种数据绑定方式：</h2><hr />
+			<h3>1、普通方式：</h3>
+			<label></label>
+		</article>
+		
+		
+		<br /><br />
+		
+		
+		<article class="am-container" >
+			<h3>2、script方式：</h3>
+			<myscript></myscript>
+		</article>
+		
+		
+		<br /><br />
+		
+		
+		<article class="am-container" >
+			<h3>3、外部html方式：</h3>
+			<mupiao></mupiao>
+		</article>
+		
+		<br /><br /><br /><br /><br /><br /><br /><br /><br />
+	</body>
+	<script src="../js/angular-1.5.7.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/ng-template" id="JS">
+		<h2><span class="am-icon-home"></span> 我是写在script代码中的哦！</h2>
+	</script>
+	
+	<script type="text/javascript">
+		var APP = angular.module('APP' , []);
+			
+			//1、普通方式
+			APP.directive('label' , function()
+			{
+				return {
+					restrict : "AE",
+					template : '<div>input框：<input type="text" placeholder="模板是直接写在这里的" ng-model="text"/>{{text}}</div>',//【模板是直接写在这里的】
+					replace : true 
+				}
+			});
+			
+			//2、script方式
+			APP.directive('myscript' , function()
+			{
+				return {
+					restrict : "AE",
+					templateUrl : 'JS', //对应JS中的ID名【模板是写在script代码中的】
+					replace : true
+				}
+			});
+			
+			//外部引用html方式
+			APP.directive('mupiao' , function()
+			{
+				return {
+					restrict : "AE",
+					templateUrl : 'myhtml.html',//【模板是从外部的html文件引用进来的】
+					replace : true
+				}
+			})
+	</script>
+	
+</html>

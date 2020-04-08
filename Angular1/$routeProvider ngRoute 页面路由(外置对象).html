@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$routeProvider ngRoute 页面路由</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{ text-align: center;}
+			pre{ font-size: 18px;}
+			.page{ width:100%; top: 0; bottom: 0; padding: 200px; text-align: center;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>$routeProvider ngRoute 页面路由</h1><hr />
+		<pre>
+			<h2>注意上面地址栏的最#后面的变化：[在当前页跳转]</h2>
+			<a href="#/HelAng">点击查看HelAng页面</a>
+			<a href="#/AngularJS">点击查看AngularJS页面</a>
+			<a href="#/ng-repeat">点击查看ng-repeat页面</a>
+		</pre>
+		
+		<article class="page{{pageClass}}" ng-view></article>
+		
+	</body>
+	<script src="js/angular-1.5.7.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/angular-route.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/angular-animate.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+								//引用      		  路由模块		动画模块      注：引用不同的模块时：一定要引入对应的JS文件！
+		var APP = angular.module('APP' , ['ngRoute' , 'ngAnimate']);
+			APP.config(function($routeProvider){ //$routeProvider是Angular自身的路由机制
+				$routeProvider.when('/HelAng',{ //路由跳转名称
+					templateUrl:'helloAngularJS.html', //跳转路径地址
+					controller:'' //目标页面中的控制器 名称
+				})
+				.when('/AngularJS',{
+					templateUrl:'AngularJS 数据双向绑定.html',
+					controller:'content'
+				})
+				.when('/ng-repeat',{
+					templateUrl:'ng-repeat 数据循环输出.html',
+					controller:''
+				})
+				.otherwise({
+					redirectTo:'/HelAng' //默认路由地址名称
+				})
+			})
+			
+	</script>
+</html>

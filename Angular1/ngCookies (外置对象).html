@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ngCookies(外置对象)</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{ font-size: 18px;}
+			.am-container{ max-width: 1200px;}
+			textarea{ width: 600px; height: 300px;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>ngCookies(外置对象)</h1><hr />
+		
+		
+		<article class="am-container" ng-controller="Ctrl">	
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<div class="am-input-group am-input-group-primary">
+					  	<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+					  	<input type="text" class="am-form-field" placeholder="请输入要缓存的内容" ng-model="inputText">
+						<span class="am-input-group-btn">
+					       	<button type="button" class="am-btn am-btn-primary" ng-click="InsertCH()"><i class="am-icon-cog"></i> 设置cookies</button>
+							<button type="button" class="am-btn am-btn-success" ng-click="SelectCH()"><i class="am-icon-cloud-download"></i> 查看cookies</button>
+							<button type="button" class="am-btn am-btn-danger" ng-click="DeleteCH()"><i class="am-icon-trash"></i> 删除cookies</button>
+					   </span>   
+					</div>	
+				</div>
+			</div>
+			<br /><br />
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<textarea>{{showcache}}</textarea>
+				</div>
+			</div>
+			<br /><br /><br />
+			<pre>
+			$cookies
+			提供浏览器cookies的读/写访问操作。
+			
+			支持1.4及以上版本。
+			
+			需要引入ngCookies模块。angular.cookies[.min].js
+			
+			方法：
+			
+			get(key);
+			
+			根据key返回该cookies值。
+			
+			key：搜索cookies的id。
+			
+			getObject(key);
+			
+			  根据key返回该cookies的反序列化值。
+			
+			  key：搜索cookies的id。
+			
+			getAll();
+			
+			  返回所有cookies的键值对格式对象。
+			
+			put(key,value,[options]);
+			
+			  根据给定的id设置一个cookies。
+			
+			  key：cookies值的id。
+			
+			  value：要存储的cookies原始值。
+			
+			  [options]：选项对象。
+			
+			putObject(key,value,[options]);
+			
+			  根据给定的id设置一个cookies。
+			
+			  key：cookies值的id。
+			
+			  value：要存储的cookies原始值。
+			
+			  [options]：选项对象。
+			
+			  remove(key,[options]);
+			
+			  移除指定id的cookies。
+			
+			  key：要删除的键值cookies对的id。
+			
+			  [options]：选项对象。
+			
+			$cookieStore
+			提供一个被session cookies支持的键值对（字符串-对象）存储。被存入和取出的对象将自动通过angular的toJson/fromJson进行序列化/反序列化。
+			
+			依赖：$cookies !!!
+			
+			方法：get(key);
+			根据key返回cookies值（已被反序列化）。
+			
+			key：搜索cookies的id。
+			
+			
+			方法：put(key,value);
+			
+			根据给定的id设置一个cookies。
+			
+			key：cookies值的id。
+			
+			value：要存储的cookies值。
+			
+			
+			方法：remove(key);
+			
+			移除指定id的cookies。
+			
+			key：要删除的键值cookies对的id。
+			</pre>
+		</article>
+	</body>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://apps.bdimg.com/libs/angular-cookies/1.2.16/angular-cookies.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , ["ngCookies"]);
+			APP.controller('Ctrl' , function($scope , $cookieStore) 
+			{
+				$scope.InsertCH = function()
+				{
+					if(!$scope.inputText)
+					{
+						alert("请输入cookies内容！");
+						return false;
+					}
+					else
+					{
+						$cookieStore.put('mupiao' , $scope.inputText)//将input框中的内容保存在cookies中;
+						alert("cookies设置成功！");
+					}
+				}
+				
+				$scope.SelectCH = function()
+				{
+					if(!$cookieStore.get('mupiao'))
+					{
+						alert("对不起：当前没有cookies内容！");
+						return false;
+					}
+					else
+					{
+						$scope.showcache = $cookieStore.get('mupiao'); //把存储的cookies内容取出来;
+					}
+				}
+				
+				$scope.DeleteCH = function()
+				{
+					$cookieStore.remove('mupiao'); //删除指定的cookies;
+					$scope.showcache = $cookieStore.get('mupiao'); //读取一下还有没有cookies
+				}
+
+			});
+
+	</script>
+</html>

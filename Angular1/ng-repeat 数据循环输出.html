@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS ng-repeat 数据循环输出</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 24px;}
+			.am-container{ max-width: 1600px; }
+			
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>AngularJS ng-repeat 数据循环输出</h1><hr />
+		<pre>
+			{$index}}自动增加序号。
+			{$first ?"是":"否"}}判断是否 是第一条数据
+			{$last ?"是":"否"}}判断是否 是最后一条数据
+			{$middle ?"是":"否"}}判断是否 属于首条  尾条数据
+		</pre>
+		<article class="am-container"  ng-controller="BOX">
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<ul class="am-avg-md-12 am-text-center"> 
+						<li>序号</li>
+					  	<li>用户名</li>
+					  	<li>密码</li>
+					  	<li>性别</li>
+					  	<li>年龄</li>
+					  	<li>手机</li>
+					 	<li>QQ</li>
+					  	<li>微信</li>
+					  	<li>备注</li>
+					  	<li>是否首条</li>
+					  	<li>是否尾条</li>
+					  	<li>不属于首尾</li>
+					</ul>
+				</div>
+			</div>
+			<div class="am-g">
+				<div class="am-u-md-12">			  <!--ng-repeat="变量 in 数据" //循环输出json数据-->
+					<ul class="am-avg-md-12 am-text-center" ng-repeat="m in mupiao"> 
+						<li>{{$index}}</li>
+					  	<li>{{m.name}}</li>
+					  	<li>{{m.pwd}}</li>
+					  	<li>{{m.sex}}</li>
+					  	<li>{{m.age}}</li>
+					  	<li>{{m.mobile}}</li>
+					  	<li>{{m.QQ}}</li>
+					  	<li>{{m.wx}}</li>
+					  	<li>{{m.info}}</li>
+					  	<li>{{$first ? "是" : "否"}}</li>
+					  	<li>{{$last ? "是" : "否"}}</li>
+					  	<li>{{$middle ? "是" : "否"}}</li>
+					</ul>
+				</div>
+			</div>
+		</article>
+		
+		<br /><h1>AngularJS 在表格中 ng-repeat 数据循环输出</h1><hr />
+		<article class="am-container" ng-controller="BOX">
+			<table class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover " >
+				<thead>
+					<tr>
+						<th>序号</th>
+					  	<th>用户名</th>
+					  	<th>密码</th>
+					  	<th>性别</th>
+					  	<th>年龄</th>
+					  	<th>手机</th>
+					 	<th>QQ</th>
+					  	<th>微信</th>
+					  	<th>备注</th>
+					  	<th>是否首条</th>
+					  	<th>是否尾条</th>
+					  	<th>不属于首尾</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr ng-repeat="m in mupiao">
+						<td>{{$index}}</td>
+					  	<td>{{m.name}}</td>
+					  	<td>{{m.pwd}}</td>
+					  	<td>{{m.sex}}</td>
+					  	<td>{{m.age}}</td>
+					  	<td>{{m.mobile}}</td>
+					  	<td>{{m.QQ}}</td>
+					  	<td>{{m.wx}}</td>
+					  	<td>{{m.info}}</td>
+					  	<td>{{$first ?"是":"否"}}</td>
+					  	<td>{{$last ?"是":"否"}}</td>
+					  	<td>{{$middle ?"是":"否"}}</td>
+					</tr>
+				</tbody>
+				
+				
+			</table>
+		</article>
+	</body>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , [])
+		APP.controller('BOX' , function($scope)
+		{
+			$scope.mupiao = [
+				{name:"小穆" , pwd:123456 , sex:"男" , age:25 , mobile:18198353918 , QQ:914026091 , wx:"mupiao2018" , info:"没信息"},
+				{name:"张叶" , pwd:21269932 , sex:"女" , age:20 , mobile:13558793028 , QQ:1695855628 , wx:"zhangye" , info:"没信息"},
+				{name:"王梦" , pwd:52770 , sex:"男" , age:53 , mobile:13508284555 , QQ:68541245 , wx:"62356" , info:"没信息"},
+				{name:"郑琴" , pwd:05225 , sex:"女" , age:24 , mobile:1359568548 , QQ:52985562 , wx:"Chai" , info:"没信息"}
+			];
+		});
+	</script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			*{margin: 0px; padding: 0px; box-sizing: border-box;}
+			article{ width: 400px; margin: 0 auto; border: 1px solid gray; border-radius: 6px; margin-top: 100px; padding: 20px;}
+		</style>
+	</head>
+	<body ng-app="mupiao">
+		<article ng-controller="LoGin">
+			<h2><span class="am-icon-home"></span>AngularJS 登录表单</h2>
+			<div class="am-alert {{bg_color}} " data-am-alert ng-show=" errorMsg.length > 0">
+			  	<button type="button" class="am-close">&times;</button>
+			  	<p><i class="{{icon}}"></i> {{errorMsg}}</p>
+		  		<p><i class="{{icon}}"></i><span ng-bind="errorMsg"></span></p> <!--除了用{{}} 也可以这样写-->
+			</div>
+			<div class="am-input-group">
+			  	<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+			  	<input type="text" class="am-form-field" placeholder="Username" ng-model="user.name">
+			</div>
+			
+			<div class="am-input-group">
+			  	<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+			  	<input type="password" class="am-form-field" placeholder="Password" ng-model="user.pwd">
+			</div>
+
+			<div class="am-checkbox">
+				<label>
+					<input type="checkbox" name="" id="" value="" />记住密码！
+				</label>
+			</div>
+			<div class="am-g">
+			  	<div class="am-u-sm-6 am-text-center">
+			  		<button class="am-btn am-btn-primary " ng-click="loginFn()">
+		  				<i class="am-icon-gear am-icon-spin" ></i> 登 录
+					</button>
+			  	</div>
+			  	<div class="am-u-sm-6 am-text-center">
+			  		<button class="am-btn am-btn-success">
+		  				<i class="am-icon-hand-o-right "></i> 注 册
+					</button>
+			  	</div>
+			</div>
+			
+		</article>
+	</body>
+	<script src="js/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
+<!--	<script src="js/amazeui.min.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		angular.module('mupiao',[])
+		.controller('LoGin', function($scope)
+		{
+			$scope.user = {name:'' , pwd:''};
+			$scope.errorMsg = "";
+			$scope.loginFn = function()
+			{
+				console.log($scope.user.name);
+				console.log($scope.user.pwd);
+				
+				if($scope.user.name == '' || $scope.user.pwd == '')
+				{
+					$scope.errorMsg = "用户名或密码不能为空！";
+					$scope.bg_color = "am-alert-danger";
+					$scope.icon = "am-icon-close"
+				}
+				else if($scope.user.name == 'mupiao' && $scope.user.pwd == '123456')
+				{
+					$scope.errorMsg = "恭喜您：登录成功啦！";
+					$scope.bg_color = "am-alert-success";
+					$scope.icon = "am-icon-angellist"
+				}
+				else
+				{
+					$scope.errorMsg = "用户名或密码不正确！";
+					$scope.bg_color = "am-alert-danger";
+					$scope.icon = "am-icon-close"
+				}
+
+			};
+		})
+	</script>
+</html>

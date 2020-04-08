@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Angular-resource(模块的服务 数据访问)</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{ text-align: center;}
+			pre{ font-size: 18px;}
+			.am-container{ max-width: 1200px;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>Angular-resource(模块的服务 数据访问)</h1><hr />
+		<pre>
+			$log：
+		</pre>
+		<article class="am-container" ng-controller="content">
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<button type="button" class="am-btn am-btn-primary" ng-click="$log.log(mupiao)">主色按钮</button>
+					<button type="button" class="am-btn am-btn-secondary" ng-click="$log.warn(mupiao)">次色按钮</button>
+					<button type="button" class="am-btn am-btn-success" ng-click="$log.info(mupiao)">绿色按钮</button>
+					<button type="button" class="am-btn am-btn-warning" ng-click="$log.eorro(mupiao)">橙色按钮</button>
+					<button type="button" class="am-btn am-btn-danger" ng-click="$log.debug(mupiao)">红色按钮</button>
+				</div>
+			</div>
+		</article>
+	</body>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , []);
+			APP.controller('content' , function($scope , $log){
+				$scope.$log = $log;
+				$scope.mupiao = '5！';
+			})
+	</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Page-Enter" content="revealTrans(duration=2s, transition=5)">
+		<title>AngularJS模板引擎</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+		</style>
+		<meta http-equiv=V="REFRESH" content="5;URL=http://www.51js.com">
+	</head>
+	<body ng-app="APP">
+		<h1>AngularJS模板引擎 数据循环</h1><hr />
+
+		<!--text/ng-template //这就是AngularJS 的模板引擎  , id 就是对应的 src-->
+		<script type="text/ng-template" id="mupiao" ng-repeat="m in DATA">
+		    <li><a href="{{m.url}}"><i class="am-icon-pencil am-icon-fw"></i> {{m.txt}}</a></li>
+		</script>
+
+
+		<article class="am-container"  ng-controller="list">
+			<div class="am-g">
+				<div class="am-u-md-12">
+					<ul class="am-list c am-list-border am-list-striped" ng-include src="'mupiao'"> <!--ng-include src="'这里要用单引括起来'"-->   	
+					</ul>
+				</div>
+			</div>
+		</article>
+	</body>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP' , [])
+		APP.controller('list' , function($scope)
+		{		
+			$scope.DATA = [
+				{url:"http://www.baidu.com" , txt:"没信息"},
+				{url:"http://www.baidu.com" , txt:"没信息"},
+				{url:"http://www.baidu.com" , txt:"没信息"},
+				{url:"http://www.baidu.com" , txt:"没信息"}
+			];
+		});
+	</script>
+</html>

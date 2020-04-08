@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$http注入 (Ajax)</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{ font-size: 18px;}
+			.am-container{ max-width: 1200px;}
+			.red{color: red;}
+			.green{color: green;}
+			table th,td{text-align: center;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>$http 注入 (Ajax) 内置服务对象</h1><hr />
+		<pre>
+			$http 是 AngularJS 应用中最常用的服务,也是核心服务,用于读取远程服务器的数据。服务向服务器发送请求，应用响应服务器传送过来的数据(说白了就是Angular自己封装的AJAX)。
+		
+			$http.get(url) 是用于读取服务器数据的函数。
+			
+			$http.get('Json.txt')//数据		状态		文件头	文件详情
+				.success(function(data , status , headers , config)
+				{
+					//alert(JSON.stringify(data));
+					$scope.JaonData = data.mupiao;
+				})
+				.error(function(data , status , headers , config)
+				{
+					alert(JSON.stringify(status));
+				})
+			
+			$http.post(url) 也是用于读取服务器数据的函数[不推荐用]。
+			
+			AngularJS 应用通过 ng-app 定义。应用在 div 中执行。
+			ng-controller 指令设置了 controller 对象 名。
+			函数 customersController 是一个标准的 JavaScript 对象构造器。
+			控制器对象有一个属性: $scope.names。
+			$http.get() 从web服务器上读取静态 JSON 数据。
+		</pre>
+		
+		<article class="am-container" ng-controller="test">
+			
+			<input type="button" name="" id="" value="$http.pose 方式获取数据" ng-class="Post()" /><br /><br />
+			
+			<table class="am-table am-table-bordered am-table-striped am-table-hover">
+				<thead>
+					<tr class="am-active">
+						<th>选择</th>
+						<th>序号</th>
+						<th>名 称</th>
+						<th>省 市</th>
+						<th>国 家</th>
+						<th>首条</th>
+						<th>中部</th>
+						<th>尾条</th>
+					</tr>
+				</thead>
+				
+				<tbody class="am-text-center" >
+					<tr ng-repeat=" i in JaonData" ng-click="chaingNF($index)" >
+						<td><input type="checkbox" name="" id="cb{{$index}}" value="cb{{$index}}" onclick="Check_Box(this)"/></td>
+						<td>{{$index}}</td>
+						<td>{{i.Name}}</td>
+						<td>{{i.City}}</td>
+						<td>{{i.Country}}</td>
+						<td ng-class="{true:'green' , false:'red'}[$first]">{{$first ? "是" : "否"}}</td>
+						<td ng-class="{true:'green' , false:'red'}[$middle]">{{$middle ? "是" : "否"}}</td>
+						<td ng-class="{true:'green' , false:'red'}[$last]">{{$last ? "是" : "否"}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</article>
+	</body>
+	<script src="js/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP',[])
+			APP.controller('test',function($scope , $http) //将 mupiao变量注入到这里
+			{
+				$scope.JaonData = "";
+				
+				//$http.get方式
+				$http.get('Json.txt')//数据		状态		文件头	文件详情
+					.success(function(data , status , headers , config)
+					{
+						//alert(JSON.stringify(data));
+						$scope.JaonData = data.mupiao;
+					})
+					.error(function(data , status , headers , config)
+					{
+						alert(JSON.stringify(status));
+					})
+					
+					
+//				$scope.Post = function()
+//				{
+//					//$http.post方式(Angular中封装好像不是很好！还不如写原生的AJAX )
+//					$http.post('test.php' , [user = 'admin' , pwd = 'abc123'])
+//						.success(function(data , status , headers , config)
+//						{
+//							alert(JSON.stringify(data));
+//							$scope.JaonData = data;
+//						})
+//				}
+
+
+				$scope.chaingNF = function(obj)
+				{
+					if($("#cb"+obj).is(':checked') == false)//jquery 获取复选框的选择状态
+					{
+						$("#cb"+obj).prop('checked',true);
+					}
+					else
+					{
+						$("#cb"+obj).prop('checked',false);
+					}
+				}
+				
+			});
+			
+			var Check_Box = function(obj)
+			{
+				alert(obj.value);
+			}
+	</script>
+</html>

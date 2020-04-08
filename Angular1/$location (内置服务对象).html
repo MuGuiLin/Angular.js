@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>$location</title>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{ font-size: 18px;}
+			.am-container{ max-width: 1200px;}
+			.red{color: red;}
+			.green{color: green;}
+			table th,td{text-align: center;}
+		</style>
+	</head>
+	<body ng-app="APP">
+		<h1>$location 内置服务对象</h1><hr />
+		<pre>
+			Angular中使用内置的$location服务来监听、操作URL，包括如下功能：
+
+			1、获取、监听、改变地址栏的URL。
+			2、与URL实现双向数据绑定（地址栏变动、前进后退或者点击页面的链接均会触发）。
+			3、将URL对象封装成了一套方法（protocol(协议)、absUrl(路径)、host(IP地址)、port(端口号)、path(#号后面)、search(参数)、hash()）。
+			
+			相对于BOM原生的window.location，使用$location更利于测试用例的编写（通过$location来注入假数据），
+			提供的接口也更友好（官方一直强调是jQuery-style getters and setters，我的理解就是支持链式写法），
+			与URL实现了双向绑定，内部集成了HTML5的History API，所以建议使用$location服务。
+			
+			$location处于Angular的生命周期内，单个周期内的改变会统一在周期结束时生效，所以不必担心每次改变了$location，URL都会立刻变化。
+
+			注意：$location无法使整个页面重新加载。如果改变URL后希望重新加载页面，请使用$window.location.href。
+			
+			<a target="_blank" href="http://www.tuicool.com/articles/2Q3Ufe">参考资料</a>
+		</pre>
+		
+		<article class="am-container" ng-controller="test">	
+			<div>协议：{{protocol}}</div>
+			<div>路径：{{absUrl}}</div>
+			<div>端口号：{{port}}</div>
+			<div>#号后面：{{path}}</div>
+			<div>参数：{{search}}</div>
+			<div>不知道？{{hash}}</div>
+			<div>IP地址{{host}}</div>
+		</article>
+	</body>
+	<script src="js/jquery-2.2.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var APP = angular.module('APP',[])
+			APP.controller('test',function($scope , $location) //
+			{
+				$scope.protocol = $location.protocol();//
+				$scope.absUrl = $location.absUrl();//
+				$scope.port = $location.port();//
+				$scope.path = $location.path();//
+				$scope.search = $location.search();//
+				$scope.hash = $location.hash();//
+				$scope.host = $location.host();//
+			});
+			
+			
+	</script>
+</html>

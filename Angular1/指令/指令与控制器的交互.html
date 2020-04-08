@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="APP">
+	<head>
+		<meta charset="utf-8">
+		<title>指令与控制器的交互</title>
+		<link rel="stylesheet" type="text/css" href="../css/amazeui.min.css"/>
+		<style type="text/css">
+			h1{text-align: center;}
+			pre{font-size: 18px;}
+			mupiao{ font-size: 36px; line-height: 50px;}
+		</style>
+	</head>
+	<body>
+		<h1>指令与控制器的交互</h1><hr />
+		<pre>
+			APP.directive('mupiao' , function()
+			{
+				return {
+					restrict : "AE",
+					link : function(scope , element , attr) //link属性有4个参数， scope(范围) , element(元素) , attr(属性) ， 。。。
+					{
+						element.bind("mouseenter" , function() //onmouseenter 给元素添加鼠标滑动事件
+						{
+							//alert("123");
+							//scope.loadData(); //调用方法：1、调用上面的loadData()函数！
+							scope.$apply("loadData()"); //调用方法：2、调用上面的loadData()函数！
+							
+							/**********以上两种调用方法只能调用到1个控制器，不方便****************************/
+							
+							//推荐使用这种【这就是所谓的指令互用，说白了就是可以用在多个不同的控制器中, 说专业点就是，1个指令怎么调用多个控制器！】
+							scope.$apply(attr.mulin);	//调用方法：3、通过自定义的属性分别 调用上面的newload() , hello() , ctrlkye() 3个函数 这样就更灵活啦！
+						})	
+					}
+				}
+			});
+		</pre>
+		<article class="am-container" ng-controller="ctrl">
+			<mupiao >我是只能用于前面两种调用方法的 [把鼠标指向我，看效果]</mupiao>
+		</article>
+		<article class="am-container" ng-controller="ctrlA">
+			<mupiao mulin="newload()">大数据处理1 [把鼠标指向我，看效果]</mupiao>
+		</article>
+		
+		<article class="am-container" ng-controller="ctrlB">
+			<mupiao mulin="hello()">大数据处理2 [把鼠标指向我，看效果]</mupiao>
+		</article>
+		
+		<article class="am-container" ng-controller="ctrlC">
+			<mupiao mulin="ctrlkey()">大数据处理3 [把鼠标指向我，看效果]</mupiao>
+		</article>
+		
+		
+		<br /><br /><br /><br /><br /><br /><br /><br /><br />
+	</body>
+	<script src="../js/angular-1.5.7.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	
+		var APP = angular.module('APP' , []);
+			APP.controller('ctrl' , function( $scope) //控制器1
+			{
+				$scope.loadData = function()
+				{
+					alert("数据正在加载中！");
+				}
+			});
+			APP.controller('ctrlA' , function( $scope) //控制器1
+			{
+				$scope.newload = function()
+				{
+					alert("数据加载中！(通过自定义的属性 调用)");
+				}
+			});
+			
+			APP.controller('ctrlB' , function( $scope)//控制器2
+			{
+				$scope.hello = function()
+				{
+					alert("你好呀！您想执行什么事情呀！(通过自定义的属性 调用)");
+				}
+			});
+			
+			APP.controller('ctrlC' , function( $scope)//控制器3
+			{
+				$scope.ctrlkey = function()
+				{
+					alert("我是第3个控制器哦！(通过自定义的属性 调用)");
+				}
+			});
+					    //指定自定义元素	
+			APP.directive('mupiao' , function()
+			{
+				return {
+					restrict : "AE",
+					link : function(scope , element , attr) //link属性有4个参数， scope(范围) , element(元素) , attr(属性) ， 。。。
+					{
+						element.bind("mouseenter" , function() //onmouseenter 给元素添加鼠标滑动事件
+						{
+							//alert("123");
+							//scope.loadData(); //调用方法：1、调用上面控制器中的loadData()函数！
+							scope.$apply("loadData()"); //调用方法：2、调用上面控制器中的loadData()函数！
+							
+							/**********以上两种调用方法只能调用到1个控制器，不方便****************************/
+							
+							
+							//推荐使用这种【这就是所谓的指令互用，说白了就是可以用在多个不同的控制器中, 说专业点就是，1个指令怎么调用多个控制器！】
+							scope.$apply(attr.mulin);	//调用方法：3、通过自定义的属性分别 调用上面各控制器中的newload() , hello() , ctrlkye() 3个函数 这样就更灵活啦！
+							
+						})
+						
+					}
+				}
+			});
+	</script>
+	
+</html>
