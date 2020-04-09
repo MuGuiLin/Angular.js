@@ -10,11 +10,11 @@ export class DomComponent implements OnInit {
   public show: boolean = true;
 
   // 获取 dom节点 @ViewChild()装饰器 对原生js进行了封装 注：（在使用前 一定要在上面先引入import { Component, OnInit, ViewChild } from '@angular/core';）
-  @ViewChild('box3') oBox3: any;
+  @ViewChild('box3', {static: false}) oBox3: any;
 
 
   // 获取dom2组件 实例
-  @ViewChild('dom2') oDom2: any;
+  @ViewChild('dom2', { static: false }) oDom2: any;
 
 
   constructor() {

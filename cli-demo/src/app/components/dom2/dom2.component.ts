@@ -11,16 +11,16 @@ export class Dom2Component implements OnInit {
 
   public timer: any = null;
 
-  @ViewChild('h2') h2: any;
+  @ViewChild('h2', { static: false }) h2: any;
 
-  @ViewChild('aside') aside: any;
+  @ViewChild('aside', { static: false }) aside: any;
 
   constructor() {
 
   }
 
   ngOnInit() {
-    this.aside.nativeElement.style.height = document.body.clientHeight + 'px';
+    // this.aside.nativeElement.style.height = document.body.clientHeight + 'px';
   }
 
   mupiao(par): void {
@@ -32,6 +32,7 @@ export class Dom2Component implements OnInit {
 
   isShowAside(): void {
     console.log(getComputedStyle(this.aside.nativeElement, null)['transform']);
+    this.aside.nativeElement.style.height = document.body.clientHeight + 'px';
     const matrix: string = getComputedStyle(this.aside.nativeElement, null)['transform'];
     this.aside.nativeElement.style.transform = matrix == 'matrix(1, 0, 0, 1, 0, 0)' ? 'translateX(100%)' : 'translateX(0)';
   }
