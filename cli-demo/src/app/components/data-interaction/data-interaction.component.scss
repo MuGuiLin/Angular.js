@@ -1,0 +1,27 @@
+button {
+    margin: 20px;
+    padding: 10px;
+    font-size: 16px;
+}
+.father {
+    padding: 6px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    ul {
+        padding-left: 30px;
+        display: flex;
+        li {
+            text-align: center;
+            margin: 10px 30px;
+            img {
+                width: 80px;
+                border-radius: 8px;
+                vertical-align: text-top;
+                border: 1px solid yellowgreen;
+            }
+            p {
+                color: green;
+            }
+        }
+    }
+}

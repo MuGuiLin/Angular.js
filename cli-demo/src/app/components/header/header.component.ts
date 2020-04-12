@@ -21,4 +21,10 @@ export class HeaderComponent implements OnInit {
     console.log('header组件初始化！')
   }
 
+  ngOnDestroy(): void {
+    //在实例销毁之前调用一次。
+    //将“ implements OnDestroy”添加到类中。
+    console.warn('+++++++++++ 08、生命周期钩子，ngOnDestroy()，在实例销毁之前调用一次');
+  }
+
 }

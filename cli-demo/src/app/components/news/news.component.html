@@ -5,11 +5,12 @@
 
 <section class="news">
 
-    <h3 [title]="attr" [id]="attr">html属性绑定：&lt;img [title]="attr-var" [id]="attr-var" src="assets/icon.png" />鼠标指向我试试
+    <h3 [title]="attr" [id]="attr">html属性绑定：鼠标指向我试试
     </h3>
+    <pre><code>&lt;img [title]="attr-var" [id]="attr-var" src="assets/icon.png" /></code></pre> 
 
-
-    <h3>html标签渲染：&lt;p [innerHTML]="html-var">&lt;/p></h3>
+    <h3>html标签渲染：</h3>
+    <pre class="hljs"><code>&lt;p [innerHTML]="html-var">&lt;/p></code></pre> 
     <p [innerHTML]="content"></p>
 
 
@@ -33,15 +34,15 @@
     <br><br><br>
     <h2> 管道 | 用于格式化日期、字母大小写转换、JS对象序列化、小数保留、管道链、自定义管道等 <a href="http://bbs.itying.com/topic/5bf519657e9f5911d41f2a34" target="_blank" rel="noopener noreferrer">DEMO地址</a></h2>
 
-    <p>时间戳转时间：{{stamp}} 转换后：{{stamp | date: 'yyyy-mm-dd hh: mm: ss'}}</p>
+    <p>时间戳转时间：{{stamp}} 转换后：{{stamp | date: 'yyyy-mm-dd hh: mm: ss'}} <code> | date: 'yyyy-mm-dd hh: mm: ss'</code></p>
 
-    <p>转为大写字母：{{letter}} 转换后：{{letter | uppercase}}</p>
+    <p>转为大写字母：{{letter}} 转换后：{{letter | uppercase}} <code>| uppercase</code></p>
 
-    <p>转为小写字母：{{letter}} 转换后：{{letter | lowercase}}</p>
+    <p>转为小写字母：{{letter}} 转换后：{{letter | lowercase}}<code> | lowercase</code></p>
 
-    <p>JS对象序列化： {{news[0].Keywords}} 转换后：<code>{{news[0] | json}}</code></p>
+    <p>JS对象序列化： {{news[0].Keywords}} 转换后：<code>| json</code> <br> <code>{{news[0] | json}}</code></p>
 
-    <p>保留小数接收的参数格式为 <b>【 num-var | 最少整数位数 . 最少小数位数 - 最多小数位数】</b>，保留3 ~ 5位小数：{{number | number:'2.3-5'}}</p>
+    <p>保留小数接收的参数格式为 <b>【 num-var | 最少整数位数 . 最少小数位数 - 最多小数位数】</b>，<code>| number:'2.3-5'</code>保留3 ~ 5位小数：{{number | number:'2.3-5'}}</p>
 
 
     <br><br><br>

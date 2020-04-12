@@ -5,11 +5,20 @@
 <section class="search-box">
     <div class="search">
         <div class="head">
-            <input type="search" name="keyWords" [(ngModel)]="keyWords" placeholder="请输入要搜索的关键字！" />
+            <input type="search" name="keyWords" (input)="searchInput()" [(ngModel)]="keyWords" placeholder="请输入要搜索的关键字！" />
             <input type="button" value="搜 索" (click)="onSearch()">
+            <ul id="list" *ngIf="0 < keyWordsList.length">
+                <!-- <li *ngFor="let item of keyWordsList; let i = index;">
+                    <a target="_blank" href="https://www.baidu.com/s?wd={{item}}"> {{item}}</a>
+                </li> -->
+                <li *ngFor="let item of keyWordsList; let i = index;" (click)="onSelect(item)">{{item}}</li>
+               
+            </ul>
         </div>
         <ul class="list">
-            <li *ngFor="let item of history; let i = index;">{{item}}<i (click)="delHistory(i)">×</i></li>
+            <li *ngFor="let item of history; let i = index;">
+                <a target="_blank" href="https://www.baidu.com/s?wd={{item}}"> {{item}}</a><i (click)="delHistory(i)">×</i>
+            </li>
         </ul>
     </div>
 </section>

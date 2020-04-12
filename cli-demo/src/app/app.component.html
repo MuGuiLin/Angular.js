@@ -36,6 +36,27 @@
   <app-to-do-list></app-to-do-list>
 
   <app-dom></app-dom>
+
+  <app-tong-xun #tongXun (mupiao)="parentFn2($event)" [text]="text" [pi]="PI" [obj]="json" [fn]="parentFn" [app]="this">
+    <!-- [text]="text" 注：传递数据(变量 或 方法 甚至 整个实例this 这个this就是当前这个父组件)时[]中的属性名可自定义，后面的就是ts中的变量 ，注：向子组件传方法时后面不能加()-->
+  </app-tong-xun>
+
+  <div class="btn-box">
+
+    <h3>{{childData | json}}</h3>
+
+    <button (click)="runChildFn()">调用子组件的方法 并 向子组件方法传递参数</button>
+
+    <button (click)="getChildObj()">获取子组件的整个实例对象</button>
+
+  </div>
+
+  <app-life-cycle></app-life-cycle>
+
+  <app-rxjs></app-rxjs>
+
+  <app-data-interaction></app-data-interaction>
+
 </section>
 
 <app-footer></app-footer>
