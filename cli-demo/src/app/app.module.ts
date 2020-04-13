@@ -18,9 +18,13 @@ import { StorageService } from "./services/storage.service";
 // 疑问, 感觉，服务模块在这里没引用 和 不在下面的 providers[] 中注入也能用？？？
 // import { AxiosService } from "./services/axios.service";
 
-// 根组件
+// 路由组件
 import { AppRoutingModule } from './app-routing.module';
+
+// 根组件
 import { AppComponent } from './app.component';
+
+
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { NewsComponent } from './components/news/news.component';
@@ -57,12 +61,12 @@ import { DataInteractionComponent } from './components/data-interaction/data-int
     DataInteractionComponent
   ],
 
-  // 配置当前模块运行依赖的其他模块
+  // 配置 注入 当前模块运行依赖的其他模块
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     HttpClientJsonpModule,
-    AppRoutingModule,
     FormsModule,
     // api
   ],

@@ -2,7 +2,11 @@
 <app-header></app-header>
 
 <section class="root">
-  <h1>欢迎访问 主app.component.html页</h1>
+
+  <!-- 动态加载页面、组件 -->
+  <router-outlet></router-outlet>
+
+   <h1>欢迎访问 主app.component.html页</h1>
   <hr>
   <section class="app">
     <h1>Welcome to Angualr v8.2.2 {{ title }} + TypeScript v3.5.3 !</h1>
@@ -57,9 +61,7 @@
 
   <app-data-interaction></app-data-interaction>
 
+
 </section>
 
 <app-footer></app-footer>
-
-
-<router-outlet></router-outlet>
