@@ -1,10 +1,8 @@
-<br>
-<br>
-<h1>Angular生命周期钩子 <h4 style="font-size: 16px; color: red;">每个组件都有一个被 Angular 管理的生命周期。</h4>
-</h1>
+<h1>Angular 生命周期钩子(函数)</h1>
 <hr>
 <section class="life-cycle">
     <pre>
+        <h4 style="font-size: 16px; color: red;">注：每个组件(页面)都有一个被 Angular 管理的生命周期。</h4>
 
         Angular 创建和渲染组件及其子组件，当它们绑定的属性发生变化时检查它们，并在从 DOM 中移除它之前销毁它们。
 
@@ -79,16 +77,17 @@
 
     </pre>
 
-    <button (click)="update()">改变newName的值</button> <input name="name" [(ngModel)]="name"  placeholder="数据改变时触发" value="value">
-    <h3>当属性数据改变时会触发：
-
+    <button (click)="update()">改变newName的值</button> <input name="name" [(ngModel)]="name" placeholder="数据改变时触发"  value="value">
+    
+    <h3 class="h3">
+        <p>当属性数据改变时会触发以下：</p>
         <p>03、生命周期钩子，ngDoCheck()，检查组件或指令的输入属性时调用</p>
         <p>05、生命周期钩子，ngAfterContentChecked()，每次完成内容投影到组件的变更检测之后调用</p>
         <p>07、生命周期钩子，ngAfterViewChecked()，每次完成组件视图及子视图的变更检测之后调用</p>
+        <br>
+        <p style="color: red;">注：只要带了Check的生命周期钩子 数据每改变一次，都会执行一次</p>
+        <br>
     </h3>
-
-    <h3 style="color: red;">注：只要带了Check的生命周期钩子 数据每改变一次，都会执行一次</h3>
-
 
     <app-header *ngIf="show"></app-header>
 

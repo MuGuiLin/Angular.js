@@ -28,6 +28,8 @@ export class AppComponent {
 
   public childData: any;
 
+  public random: number = Math.random();
+
   // 构造函数
   constructor() {
 

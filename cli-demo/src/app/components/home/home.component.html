@@ -1,39 +1,15 @@
-<h1>欢迎访问 首页 home</h1>
-<hr>
 <section class="home">
+    <menu class="menu">
+        <ul>
+            <li *ngFor="let item of menu" routerLinkActive="active">
+                <a [routerLink]="[ item.link]" >{{item.name}}</a>
+            </li>
+        </ul>
+        
+    </menu>
 
-    <h3>本地img图片引入：</h3>
-    <ul class="home-icon">
-        <li>
-            <img src="assets/hx_tip_icon_2@1x.png" alt=""/> 
-            <span>直从assets目录开始引入就OK<br/><pre><code>如：&lt;img src="assets/icon-1.png" /></code></pre> </span>
-        </li>
-        <li>
-            <img src="assets/hx_tip_icon_4@1x.png" alt=""/> 
-            <span>直从assets目录开始引入就OK<br/><pre><code>如：&lt;img src="assets/icon-2.png" /></code></pre> </span>
-        </li>
-        <li>
-            <img src="assets/hx_tip_icon_5@1x.png" alt=""/> 
-            <span>直从assets目录开始引入就OK<br/><pre><code>如：&lt;img src="assets/icon-3.png" /></code></pre> </span>
-        </li>
-        <li>
-            <img src="assets/hx_tip_icon_6@1x.png" alt=""/> 
-            <span>直从assets目录开始引入就OK<br/><pre><code>如：&lt;img src="assets/icon-4.png" /></code></pre> </span>
-        </li>
-    </ul>
+    <section class="main">
+        <router-outlet></router-outlet>
+    </section>
 
-    <h3>网络img图片引入：</h3>
-    <ul class="home-icon">
-        <li></li>
-        <li>
-            <span>用属性绑定方式：<pre><code>如：&lt;img [src]="picUrl" alt="网络图片"/></code></pre> </span>
-            <br/><img [src]="picUrl" style="width: 80%;" alt="网络图片"/>
-        </li>
-        <li>
-            <span>这是一张gif图片：<pre><code>如：&lt;img [src]="picGif" alt="网络图片"/></code></pre> </span>
-            <img [src]="picGif" alt="网络图片"/>
-        </li>
-        <li></li>
-    </ul>
-    
 </section>

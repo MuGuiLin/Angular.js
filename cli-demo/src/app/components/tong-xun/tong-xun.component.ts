@@ -39,7 +39,7 @@ export class TongXunComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-   console.error('监听到组件有数据发生变化！');
+   console.info('监听到组件有数据发生变化！');
   }
 
   runParentFn() {

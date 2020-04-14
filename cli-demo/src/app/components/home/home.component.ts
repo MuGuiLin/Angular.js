@@ -7,14 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  public picUrl: string;
-  public picGif: string = 'https://inews.gtimg.com/newsapp_match/0/3034305235/0';
+  public menu: any[] = [
+    { name: '数据渲染', link: '/home/datadinding' },
+    { name: 'form表单', link: '/home/form' },
+    { name: 'dom操作', link: '/home/dom' },
+    { name: '本地服务数据', link: '/home/todolist' },
+    { name: 'jsonp搜索', link: '/home/search' },
+    // { name: '组件通迅', link: '/home/tongxun' },
+    { name: '生命周期', link: '/home/lifecycle' },
+    { name: 'Rxjs', link: '/home/rxjs' },
+    { name: '数据请求', link: '/home/getdata' },
+
+  ];
+
   constructor() {
-    this.init();
+
   }
-  init() {
-    this.picUrl = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583860565667&di=da5d081119f9b40b544ca8655e7b8bb9&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130731%2F655609_093309627123_2.jpg';
-  }
+
 
   ngOnInit() {
   }

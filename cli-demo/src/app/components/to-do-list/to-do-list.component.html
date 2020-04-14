@@ -1,8 +1,17 @@
-<br>
-<br>
-<h1>欢迎访问 待办事项清单 ToDoList --> $event e.target + 本地持久化服务公共模块StorageService <h4 style="font-size: 16px; color: red;">在命令行中创建服务：ng g service services/storage  公共模块（由于组件与组件之间不能直接通信，所以通过把StorageService服务引入到app.module.ts中的providers:[] 来配置项目所需要的服务）然后在需要用到的地方再引入StorageService服务，并在构造函数constructor(public storage: StorageService)中去接收使用</h4></h1>
+<h1>本地数据持久化 -——> service 公共服务模块 </h1>
 <hr>
 <section class="to-do-list-box">
+    <pre>
+        <code>
+            <h4 style="font-size: 16px; color: red;">
+                在命令行中创建服务：ng g service services/storage公共模块（由于组件与组件之间不能直接通信;
+                
+                所以通过把StorageService服务引入到app.module.ts中的providers:[]来配置项目所需要的服务）;
+
+                然后在需要用到的地方再引入StorageService服务，并在构造函数constructor(public storage: StorageService)中去接收使用。
+            </h4>
+        </code>
+    </pre>
     <div class="to-do-list">
         <div class="head">
             <input type="text" name="matter" (keyup)="addMatter($event)" placeholder="请输入待办事项，按回车键结束！" />

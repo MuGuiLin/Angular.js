@@ -1,23 +1,26 @@
-<br>
-<br>
-<h1>Angular中的Dom操作 <h4 style="font-size: 16px; color: red;">注：ngOnInit()方法 只是组件和指令初始化完成，并不是真正的dom加载完成！！</h4></h1>
+<h1>Angular Dom操作 </h1>
 <hr>
 <section class="dom">
+    <pre>
+        <code>
+            <h4 style="font-size: 16px; color: red;"> 注：ngOnInit()方法 只是组件和指令初始化完成，并不是真正的dom加载完成！！</h4>
+        </code>
+    </pre>
     <div class="box" id="box1">
         我是div id为box1
     </div>
 
 
     <div class="box" id="box2" *ngIf="show">
-        我是div id为box2  注：这里就获取不到oBox2的innerHTML 和设置样式，因为oBox2元素上有ng指令！！
+        我是div id为box2 注：这里就获取不到oBox2的innerHTML 和设置样式，因为oBox2元素上有ng指令！！
     </div>
 
 
-    <h3>用Angular中的方法来设置模板名用 # ，获取dom节点用@ViewChild('')装饰器 （在使用前 一定要在上面先引入import ViewChild  from '@angular/core';） </h3>
+    <h3>用Angular中的方法来设置模板名用 # ，获取dom节点用@ViewChild('')装饰器 （在使用前 一定要在上面先引入import ViewChild from '@angular/core';） </h3>
 
 
     <div class="box" #box3>
-        我是div id为box3  在元素上用#来设置id 如：&lt;div class="box" #box>, 然后在ts中用@ViewChild('box3')来获取
+        我是div id为box3 在元素上用#来设置id 如：&lt;div class="box" #box>, 然后在ts中用@ViewChild('box3')来获取
     </div>
 
 

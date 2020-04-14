@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
     { name: '首页', link: '/home' },
     { name: '关于', link: '/about' },
     { name: '新闻', link: '/news' },
-    { name: '招聘', link: '/hire' },
+    { name: '产品', link: '/goods' },
     { name: '合作', link: '/cooperate' }
   ];
 

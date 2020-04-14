@@ -1,11 +1,13 @@
-<br>
-<br>
-<h1>Angular中的组件之间的通迅 <h4 style="font-size: 16px; color: red;">1、父获子：#id @ViewChild('id', static: false}) id:
-        any；2、子获父：[attr]="attr" @input() attr: any;</h4>
-</h1>
+<h1>Angular 组件之间的通迅</h1>
 <hr>
 <section class="input">
+    <pre>
+        <code>
+            1、父获子：#id @ViewChild('id', static: false}) id:any;
 
+            2、子获父：[attr]="attr" @input() attr: any;
+        </code>
+    </pre>
     <h2>1、父组件向子组件传值（就是在子组件中获取 或 调用父组件的数据、方法、实例）</h2>
     <br>
     <h3>{{text}}，{{pi}}, {{obj | json}}</h3>

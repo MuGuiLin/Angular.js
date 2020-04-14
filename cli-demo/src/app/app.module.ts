@@ -26,18 +26,27 @@ import { AppComponent } from './app.component';
 
 
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
-import { NewsComponent } from './components/news/news.component';
 import { FooterComponent } from './components/footer/footer.component';
+
+import { HomeComponent } from './components/home/home.component';
+import { DataBindingComponent } from './components/data-binding/data-binding.component';
 import { FormComponent } from './components/form/form.component';
-import { SearchComponent } from './components/search/search.component';
-import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
+
 import { DomComponent } from './components/dom/dom.component';
 import { Dom2Component } from './components/dom2/dom2.component';
+
+import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
+import { SearchComponent } from './components/search/search.component';
+
 import { TongXunComponent } from './components/tong-xun/tong-xun.component';
 import { LifeCycleComponent } from './components/life-cycle/life-cycle.component';
 import { RxjsComponent } from './components/rxjs/rxjs.component';
 import { DataInteractionComponent } from './components/data-interaction/data-interaction.component';
+
+import { NewsComponent } from './components/news/news.component';
+import { NewsInfoComponent } from './views/news-info/news-info.component';
+import { GoodsComponent } from './views/goods/goods.component';
+import { GoodsInfoComponent } from './views/goods-info/goods-info.component';
 
 
 // @NgModule装饰器, @NgModule接受一个元数据对象，告诉 Angular 如何编译和启动应用
@@ -58,7 +67,11 @@ import { DataInteractionComponent } from './components/data-interaction/data-int
     TongXunComponent,
     LifeCycleComponent,
     RxjsComponent,
-    DataInteractionComponent
+    DataInteractionComponent,
+    NewsInfoComponent,
+    DataBindingComponent,
+    GoodsComponent,
+    GoodsInfoComponent
   ],
 
   // 配置 注入 当前模块运行依赖的其他模块
