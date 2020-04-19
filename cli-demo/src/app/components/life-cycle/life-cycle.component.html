@@ -1,0 +1,95 @@
+<h1>Angular 生命周期钩子(函数)</h1>
+<hr>
+<section class="life-cycle">
+    <pre>
+        <h4 style="font-size: 16px; color: red;">注：每个组件(页面)都有一个被 Angular 管理的生命周期。</h4>
+
+        Angular 创建和渲染组件及其子组件，当它们绑定的属性发生变化时检查它们，并在从 DOM 中移除它之前销毁它们。
+
+        Angular 提供了生命周期钩子，把它们生命中的这些关键时刻暴露出来，赋予你在它们发生时采取行动的能力。
+
+        除了那些组件内容和视图相关的钩子外,指令有相同生命周期钩子。
+
+        <b>组件生命周期钩子概览：</b>
+
+            指令和组件的实例有一个生命周期：当 Angular 新建、更新和销毁它们时触发。 通过实现一个或多个 Angular core 库里定义的生命周期钩子接口，开发者可以介入该生命周期中的这些关键时刻。
+
+            每个接口都有唯一的一个钩子方法，它们的名字是由接口名再加上 ng 前缀构成的。比如，OnInit 接口的钩子方法叫做 ngOnInit， Angular 在创建组件后立刻调用它，：
+        
+            <code>
+            export class PeekABoo implements OnInit {{
+                constructor(private logger: LoggerService) { }
+
+                // implement OnInit's `ngOnInit` method
+                ngOnInit() { this.logIt(`OnInit`); }
+
+                logIt(msg: string) {
+                    this.logger.log(`#${nextId++} ${msg}`);
+                }
+            }
+        </code>
+
+        没有指令或者组件会实现所有这些接口，并且有些钩子只对组件有意义。只有在指令/组件中定义过的那些钩子方法才会被 Angular 调用。
+
+        <b>生命周期的顺序：</b>
+        当 Angular 使用构造函数新建一个组件或指令后，就会按下面的顺序在特定时刻调用这些生命周期钩子方法：
+        <table>
+            <thead>
+                <tr>
+                    <th>钩子函数</th><th>作用说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td >ngOnChanges()</td>
+                    <td>当 Angular（重新）设置数据绑定输入属性时响应。 该方法接受当前和上一属性值的 SimpleChanges 对象在 ngOnInit() 之前以及所绑定的一个或多个输入属性的值发生变化时都会调用。</td>
+                </tr>
+                <tr style="color: red;">
+                    <td >ngOnInit() </td>
+                    <td>在 Angular 第一次显示数据绑定和设置指令/组件的输入属性之后，初始化指令/组件。 在第一轮 ngOnChanges() 完成之后调用，只调用一次。</td>
+                </tr>
+                <tr>
+                    <td >ngDoCheck()</td>
+                    <td>检测，并在发生 Angular 无法或不愿意自己检测的变化时作出反应。 在每个变更检测周期中，紧跟在 ngOnChanges() 和 ngOnInit() 后面调用。</td>
+                </tr>
+                <tr>
+                    <td >ngAfterContentInit()</td>
+                    <td>当 Angular 把外部内容投影进组件/指令的视图之后调用。  第一次 ngDoCheck() 之后调用，只调用一次。</td>
+                </tr>
+                <tr>
+                    <td >ngAfterContentChecked()</td>
+                    <td>每当 Angular 完成被投影组件内容的变更检测之后调用。 ngAfterContentInit() 和每次 ngDoCheck() 之后调用</td>
+                </tr>
+                <tr style="color: red;">
+                    <td >ngAfterViewInit()</td>
+                    <td>当 Angular 初始化完组件视图及其子视图之后调用。 第一次 ngAfterContentChecked() 之后调用，只调用一次。</td>
+                </tr>
+                <tr>
+                    <td >ngAfterViewChecked()</td>
+                    <td>每当 Angular 做完组件视图和子视图的变更检测之后调用。 ngAfterViewInit() 和每次 ngAfterContentChecked() 之后调用。</td>
+                </tr>
+                <tr style="color: red;">
+                    <td >ngOnDestroy()</td>
+                    <td>每当 Angular 每次销毁指令/组件之前调用并清扫。 在这儿反订阅可观察对象和分离事件处理器，以防内存泄漏。 在 Angular 销毁指令/组件之前调用。（如：在切换路由时触发）</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </pre>
+
+    <button (click)="update()">改变newName的值</button> <input name="name" [(ngModel)]="name" placeholder="数据改变时触发"  value="value">
+    
+    <h3 class="h3">
+        <p>当属性数据改变时会触发以下：</p>
+        <p>03、生命周期钩子，ngDoCheck()，检查组件或指令的输入属性时调用</p>
+        <p>05、生命周期钩子，ngAfterContentChecked()，每次完成内容投影到组件的变更检测之后调用</p>
+        <p>07、生命周期钩子，ngAfterViewChecked()，每次完成组件视图及子视图的变更检测之后调用</p>
+        <br>
+        <p style="color: red;">注：只要带了Check的生命周期钩子 数据每改变一次，都会执行一次</p>
+        <br>
+    </h3>
+
+    <app-header *ngIf="show"></app-header>
+
+    <button (click)="showFn()">挂载组件 / 卸载组件</button>
+</section>

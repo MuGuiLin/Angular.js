@@ -1,0 +1,61 @@
+.main {
+    // width: 100%;
+    flex: 1;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    margin-top: 63px;
+
+    .jumbotron {
+        position: relative;
+        padding: 200px;
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.075);
+        background: #020031;
+        background: linear-gradient(45deg, #020031, #6d3353);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020031",endColorstr="#6d3353",GradientType=1);
+        box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2), inset 0 -3px 7px rgba(0, 0, 0, 0.2);
+    }
+
+    .jumbotron a {
+        color: #fff;
+        color: hsla(0, 0%, 100%, 0.5);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .jumbotron a:hover {
+        color: #fff;
+        text-shadow: 0 0 10px hsla(0, 0%, 100%, 0.25);
+    }
+
+    .jumbotron .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .jumbotron:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: url(../../../assets/bs-docs-masthead-pattern.png) repeat 50%;
+        opacity: 0.4;
+    }
+
+    .jumbotron {
+        .btn-primary.btn-shadow {
+            box-shadow: inset 0 -4px 0 #23527c;
+            border: 0;
+            color: #fff;
+        }
+
+        .btn-lg.btn-shadow {
+            padding: 13px 35px 17px;
+        }
+    }
+}

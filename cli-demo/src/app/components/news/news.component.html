@@ -1,0 +1,42 @@
+
+<h1>新闻页：/news</h1>
+<hr>
+
+<section class="news">
+
+    <h3>1、以前普通get传值：href="/newsinfo?id=item.id"</h3>
+    <ul>
+        <li *ngFor="let item of newsList, let i = index;">
+
+            <!-- 以前普通get传值 -->
+            <a href="/newsinfo?id={{item.id}}" target="_blank" rel="noopener noreferrer">{{item.id}}、{{item.title}}</a>
+        </li>
+    </ul>
+
+    <br><br>
+    <h3>2、Angular中的普通get传值：[routerLink]="[ '/newsinfo']" [queryParams]="id: item.id, zt: i}"</h3>
+    <ul>
+        <li *ngFor="let item of newsList, let i = index;">
+
+            <!-- Angular中的普通get传值 -->
+            <a target="_blank" [routerLink]="[ '/newsinfo']" [queryParams]="{id: item.id, zt: i}">{{item.id}}、{{item.title}}</a>
+        </li>
+    </ul>
+
+    <br><br>
+    <h3>3、Angular中的动态路由传值：[routerLink]="[ '/newsinfo/', item.id ]"</h3>
+    <ul>
+        <li *ngFor="let item of newsList, let i = index;">
+        
+            <!-- 
+                Angular中的动态路由传值 注：它的参数名是写在 路由配置文件 app-routing.module.ts 中的，
+
+                如下所示：
+                    { path: 'newsinfo/:id', component: NewsInfoComponent }  //设置动态路由传参的参数名
+             -->
+
+            <!-- <a target="_blank" routerLink="/newsinfo/{{item.id}}">{{item.id}}、{{item.title}}</a> -->
+            <a target="_blank" [routerLink]="[ '/newsinfo/', item.id ]">{{item.id}}、{{item.title}}</a>
+        </li>
+    </ul>
+</section>

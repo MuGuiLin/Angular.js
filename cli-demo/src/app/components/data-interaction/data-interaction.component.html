@@ -1,0 +1,211 @@
+<h1>Angular 常见数据交互（get、post、jsonp），以及第三方工具 Axios</h1>
+<hr>
+<section class="getData">
+    <pre>
+        Angular5.x 以后 get、post 和和服务器交互使用的是 HttpClientModule 模块。 
+
+        1、在 app.module.ts 中引入 HttpClientModule 并注入 
+        <code>
+            import {{HttpClientModule} from '@angular/common/http'; 
+
+            // 在imports中依赖注入模块
+            imports: [ BrowserModule, HttpClientModule ]
+        </code>
+        
+        2、在用到的地方引入 HttpClient 并在构造函数声明 
+        <code>
+            import {HttpClient, HttpHeaders} from "@angular/common/http"; 
+
+            // 在构造函数声明
+            constructor(public http:HttpClient) { 
+
+            }
+
+            //const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }; //设置请求头
+        </code>
+    </pre>
+
+    <br>
+    <br>
+    <h2>1、Angular 内置数据请求 之 GET </h2>
+    <pre>
+        <code>{{getData | json}}，由于要展示源代码，而源代码中有{{，如果是1个花括号页面就会报错，是2个就不报错，但这样会导致在 正常的双花括号中的数据不能显示，为了展示代码，只好先这样！！</code>
+
+        实例代码：
+        <code>
+            let api = "http://a.itying.com/api/productlist";
+
+            this.http.get(api, {{
+                params: {
+                  id: '106',
+                  page: '5'
+                }
+              }).subscribe((res: any) => {
+
+                console.log(res);
+            });
+        </code>
+    </pre>
+
+    <ul class="father">
+        <li *ngFor="let item of getData">
+
+            <h3>🥦{{item.title}}：</h3>
+            <ul class="child">
+                <li *ngFor="let item of item.list">
+                    <h5>{{item.title}}</h5>
+                    <img [src]="__URL__ + '/' + filterPath(item.img_url)" alt="" />
+                    <p>￥{{item.price | number: '1.2'}}</p>
+                </li>
+            </ul>
+            <br>
+        </li>
+    </ul>
+    <button (click)="httpGet()">Angular内置数据请求模块：GET请求</button>
+
+    <br>
+    <br>
+    <h2>2、Angular 内置数据请求 之 POST </h2>
+    <pre>
+        <code>{{ postData | json}}</code>
+
+        实例代码：
+        <code>
+            const httpOptions = {{ headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+
+            let api = "http://127.0.0.1:3000/doLogin";
+            
+            this.http.post(api, {
+              name: 'mupiao',
+              pwds: 123456
+            }, httpOptions).subscribe((res: any) => {
+
+              console.log(res);
+            });
+        </code>
+    </pre>
+
+    <button (click)="httpPost()">Angular内置数据请求模块：POST请求</button>
+
+    <br>
+    <br>
+    <h2>3、Angular 内置数据请求 之 JSONP </h2>
+    <pre>
+        <code>{{jsonpData | json}}</code>
+        
+        <span style="color: red;">
+        注：jsonp需要后端服务器API支持才行哦，因为它需要一个回调函数来返回数据，一般jsonp请求返回的是一个js文件！！
+
+        如：http://a.itying.com/api/productlist?callback=xxx;
+
+        或：http://a.itying.com/api/productlist?cb=xxx;
+
+        JSONP的全称是JSON with Padding，由于同源策略的限制，XmlHttpRequest只允许请求当前源（协议，域名，端口）的资源 --> 同源策略。
+        
+        如果要进行跨域请求，我们可以通过使用html的script标记来进行跨域请求，并在相应中返回要执行的script代码，其中可以直接使用JSON传递javascript对象。
+        
+        这种跨域的通讯方式成为JSONP，它是为实现跨域，而采用的一种脚本注入方法。
+        </span>
+
+        1、在 app.module.ts 中引入 HttpClientModule, HttpClientJsonpModule 并注入这两个模块
+        <code>
+            import {{HttpClientModule, HttpClientJsonpModule} from '@angular/common/http'; 
+
+            // 在imports中依赖注入模块
+            imports: [ BrowserModule, HttpClientModule, HttpClientJsonpModule ]
+        </code>
+        
+        2、在用到的地方引入 HttpClient 并在构造函数声明 
+        <code>
+            import {HttpClient, HttpHeaders} from "@angular/common/http"; 
+
+            // 在构造函数声明
+            constructor(public http:HttpClient) { 
+
+            }
+
+            //const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }; //设置请求头
+        </code>
+
+        实例代码：
+        <code>
+            let api = "http://a.itying.com/api/productlist";
+
+            this.http.jsonp(api, 'callback').subscribe((res: any) => {{
+
+                console.log(res);
+            });
+        </code>
+
+    </pre>
+
+    <button (click)="httpJsonp()">Angular内置数据请求模块：JSONP请求</button>
+
+    <br>
+    <br>
+    <h2>4、Angular 第3方模块 数据请求 之 Axios </h2>
+    <pre>
+
+        1、安装axios模块 
+        <code>
+            // Using 用npm安装:
+                npm install axios
+
+            // Using 用bower安装:
+                bower install axios
+            
+            // Using 用yarn安装:
+                yarn add axios
+        </code>
+        
+        2、在用到的地方引入 axios 并在构造函数声明 
+        <code>
+            import axios from "axios";
+        </code>
+
+        2、1 可以封装services服务中
+        <code>
+            // 1、在命令行中 创建 axios服务
+            ng g s services/axios
+
+            // 2、在 services/axios.service.ts 文件中封装
+            import axios from "axios";
+
+            // 3、用Promise封装一个get方式的请求
+
+            axiosGet(obj) {
+                return new Promise((resovle, reject) => {
+                  axios.get(obj.url, {
+                    params: obj.params
+                  })
+                  .then(function (response) {
+                    resovle(response);
+                  })
+                  .catch(function (error) {
+                    reject(error);
+                  })
+                  .finally(function () {
+                    obj.finally && obj.finally();
+                  });  
+                })
+            
+              };
+        </code>
+
+        实例代码：
+        <code>
+            let api = this.__URL__ + "/api/productlist";
+
+            this.axios.axiosGet({url: api}).then((res: any) => {
+
+            console.log('在服务中封装的axios', res.data);
+            }, (err) => {
+
+            console.log(err);
+            })
+        </code>
+    </pre>
+
+    <button (click)="axiosGet()">Angular第三方axios数据请求模块：GET请求</button>
+
+</section>

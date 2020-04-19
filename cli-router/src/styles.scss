@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+.views {
+    display: flex;
+    .menu {
+        box-sizing: border-box;
+    }
+    .main {
+        padding: 30px;
+    }
+}

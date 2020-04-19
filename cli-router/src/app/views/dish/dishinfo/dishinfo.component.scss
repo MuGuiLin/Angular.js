@@ -1,0 +1,50 @@
+.dishinfo {
+    .carousel {
+        margin: auto;
+        position: relative;
+        .carousel-inner {
+            img {
+                width: 100%;
+                min-width: 800px;
+                max-height: 500px;
+            }
+        }
+    }
+
+    .detail {
+        margin-top: 50px;
+        .jumbotron {
+            padding: 30px;
+            h1 {
+                color: #00bd00;
+                letter-spacing: 12px;
+            }
+            h4 {
+                font-size: 20px;
+                color: #ff0076;
+                line-height: 50px;
+                span{
+                    padding-left: 30px;
+                    font-size: 16px;
+                    color: gray;
+                }
+            }
+            ul{
+         
+                padding: 20px;
+                li{
+                    color: #666;
+                    font-size: 16px;
+                    line-height: 32px;
+                }
+            }
+            button{
+                margin-right: 20px;
+            }
+        }
+        .panel-body{
+            line-height: 40px;
+            font-size: 18px;
+        }
+    }
+}

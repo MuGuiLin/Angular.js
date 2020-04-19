@@ -1,0 +1,6 @@
+<header class="header">
+  <nav>
+    <img src="../../../assets/logo.jpg" alt="" />
+    <a *ngFor="let o of nav" [routerLink]="[ o.path ]" routerLinkActive="active"><i class="glyphicon glyphicon-tasks" aria-hidden="true"></i> {{o.name}}</a>
+  </nav>
+</header>

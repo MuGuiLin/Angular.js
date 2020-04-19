@@ -1,0 +1,27 @@
+.header {
+    height: 60px;
+    border-bottom: 2px solid #0092db;
+    background: #563d7c;
+
+    nav {
+        img{
+            margin: 0 71px;
+            height: 58px;
+        }
+        a {
+            padding: 17px 40px;
+            display: inline-block;
+            font-size: 18px;
+            color: white;
+
+            i {
+                vertical-align: text-top;
+            }
+        }
+
+        .active {
+            background: white;
+            color: #563d7c;
+        }
+    }
+}

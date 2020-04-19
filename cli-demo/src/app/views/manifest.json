@@ -1,0 +1,13 @@
+{
+	"initial": [
+		"http://static.jiyou-tech.com/534/js/egret.min_836d668b.js",
+		"http://static.jiyou-tech.com/534/js/egret.web.min_d1451e99.js",
+		"http://static.jiyou-tech.com/534/js/game.min_a9c9e7a1.js",
+		"http://static.jiyou-tech.com/534/js/tween.min_6c5a88f9.js",
+		"http://static.jiyou-tech.com/534/js/assetsmanager.min_2ef412b7.js",
+		"http://static.jiyou-tech.com/534/js/promise.min_83a6a5d.js"
+	],
+	"game": [
+		"http://static.jiyou-tech.com/534/js/main.min_500d464.js"
+	]
+}

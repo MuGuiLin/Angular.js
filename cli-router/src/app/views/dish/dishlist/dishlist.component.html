@@ -1,0 +1,14 @@
+<section class="dishlist">
+  <dl *ngFor="let o of list">
+    <dt>
+      <h4>{{o.title}}</h4>
+    </dt>
+    <dd *ngFor="let o of o.list">
+      <a [routerLink]="[ '/dish/dishinfo', o._id ]">
+        <img [src]="ajax.api.__URL__ + o.img_url" alt="" class="img-thumbnail" />
+        <p>￥：{{o.price}}</p>
+        <h4>{{o.title}}</h4>
+      </a>
+    </dd>
+  </dl>
+</section>

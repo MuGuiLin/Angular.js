@@ -1,0 +1,59 @@
+<h1>产品页：/goods</h1>
+<hr>
+<section class="goods">
+    <h3>1、标签get传参路由跳转：</h3>
+
+    <pre>
+        <code>
+            &lt;a [routerLink]="[ '/goodsinfo', '666' ]">标签跳转路由 到 goodsinfo产品详情页&lt;/a>
+        </code>
+    </pre>
+    <a [routerLink]="[ '/goodsinfo', '666' ]">标签跳转路由 到 goodsinfo产品详情页</a>
+
+
+    <br><br>
+    <h3>2、js 普通路由、动态路由跳转：</h3>
+    <pre>
+        <code>
+            // 1、引入Router模块
+            import  Router } from "@angular/router"
+
+            // 2、声明Router对象
+            constructor(private router: Router)
+
+            // 3.1、js普通路由跳转
+            this.router.navigate(['/goodsinfo']);
+            
+            // 3.2、js动态 传参 路由跳转
+            this.router.navigate(['/goodsinfo', '123']);
+        </code>
+    </pre>
+
+    <button (click)="jsOpenHome()">js普通路由跳转 到 home首页</button>
+
+    <button (click)="jsOpenRouter()">js动态路由 并传参 跳转 到 goodsinfo产品详情页</button>
+
+
+
+    <br><br>
+    <h3>js get跳转路由跳转路由：</h3>
+    <pre>
+        <code>
+            // 1、引入Router模块
+            import  Router, NavigationExtras } from "@angular/router"
+
+            // 2、声明Router对象
+            constructor(private router: Router)
+
+            // 3、js get 传参 路由跳转
+            let parObj: NavigationExtras = 
+                queryParams:  gid: 456, rmb: '￥998.00', num: 999 }
+            }
+            this.router.navigate(['/goodsinfo'], parObj);    // this.router.navigate(['/goodsinfo'], NavigationExtras);
+
+        </code>
+    </pre>
+
+    <button (click)="jsGetOpen()">js get跳转路由跳转路由 到 goodsinfo产品详情页</button>
+
+</section>

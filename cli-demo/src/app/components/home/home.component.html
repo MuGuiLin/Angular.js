@@ -1,0 +1,15 @@
+<section class="home">
+    <menu class="menu">
+        <ul>
+            <li *ngFor="let item of menu" routerLinkActive="active">
+                <a [routerLink]="[ item.link]" >{{item.name}}</a>
+            </li>
+        </ul>
+        
+    </menu>
+
+    <section class="main">
+        <router-outlet></router-outlet>
+    </section>
+
+</section>

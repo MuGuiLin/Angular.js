@@ -1,0 +1,149 @@
+<h1>Angular 数据绑定、渲染</h1>
+<hr>
+<section class="binding">
+
+    <h3>在模板中可以使用表达式、三元运算符 ? : 的哦：</h3>
+    <h1>3 + 2 - 5 * 0 = {{3 + 2 - 5 * 0}}</h1>
+
+    <h3 [title]="attr" [id]="attr">html属性绑定：鼠标指向我试试</h3>
+    <pre><code>&lt;img [title]="attr-var" [id]="attr-var" src="assets/icon.png" /></code></pre>
+
+    <h3>html标签渲染：</h3>
+    <pre class="hljs"><code>&lt;p [innerHTML]="html-var">&lt;/p></code></pre>
+    <p [innerHTML]="content"></p>
+
+
+    <h3>本地img图片引入：</h3>
+    <ul class="home-icon">
+        <li>
+            <img src="assets/hx_tip_icon_2@1x.png" alt="" />
+            <span>直从assets目录开始引入就OK<br />
+                <pre><code>如：&lt;img src="assets/icon-1.png" /></code></pre> </span>
+        </li>
+        <li>
+            <img src="assets/hx_tip_icon_4@1x.png" alt="" />
+            <span>直从assets目录开始引入就OK<br />
+                <pre><code>如：&lt;img src="assets/icon-2.png" /></code></pre> </span>
+        </li>
+        <li>
+            <img src="assets/hx_tip_icon_5@1x.png" alt="" />
+            <span>直从assets目录开始引入就OK<br />
+                <pre><code>如：&lt;img src="assets/icon-3.png" /></code></pre> </span>
+        </li>
+        <li>
+            <img src="assets/hx_tip_icon_6@1x.png" alt="" />
+            <span>直从assets目录开始引入就OK<br />
+                <pre><code>如：&lt;img src="assets/icon-4.png" /></code></pre> </span>
+        </li>
+    </ul>
+
+    <h3>网络img图片引入：</h3>
+    <ul class="home-icon">
+        <li></li>
+        <li>
+            <span>用属性绑定方式：
+                <pre><code>如：&lt;img [src]="picUrl" alt="网络图片"/></code></pre> </span>
+            <br /><img [src]="picUrl" style="width: 80%;" alt="网络图片" />
+        </li>
+        <li>
+            <span>这是一张gif图片：
+                <pre><code>如：&lt;img [src]="picGif" alt="网络图片"/></code></pre> </span>
+            <img [src]="picGif" alt="网络图片" />
+        </li>
+        <li></li>
+
+    </ul>
+
+    <br><br>
+    <h2> class类属性 {{ngClass}}</h2>
+
+    <p [ngClass]="{'blue': true}"> 条件为真是，显示blue类属性</p>
+
+
+    <br><br>
+    <h2> style样式属性 {{ngStyle}}</h2>
+    <p [ngStyle]="{ 'padding': '12px', 'background-color': color, 'font-size': '24px'}">设置背景为purple样式，【注：当属性值用'
+        '引起来，就是正常的属性值字符；如果没有用' '引起来，就是一个变量】</p>
+    <!-- <p [ngStyle]="ngCss">设置背景为purple样式，【注：当属性值用' '引起来，就是正常的属性值字符；如果没有用' '引起来，就是一个变量】</p> -->
+
+
+    <br><br><br>
+    <h2> 管道 | 用于格式化日期、字母大小写转换、JS对象序列化、小数保留、管道链、自定义管道等 <a href="http://bbs.itying.com/topic/5bf519657e9f5911d41f2a34"
+            target="_blank" rel="noopener noreferrer">DEMO地址</a></h2>
+
+    <p>时间戳转时间：{{stamp}} 转换后：{{stamp | date: 'yyyy-mm-dd hh: mm: ss'}} <code> | date: 'yyyy-mm-dd hh: mm: ss'</code></p>
+
+    <p>转为大写字母：{{letter}} 转换后：{{letter | uppercase}} <code>| uppercase</code></p>
+
+    <p>转为小写字母：{{letter}} 转换后：{{letter | lowercase}}<code> | lowercase</code></p>
+
+    <p>JS对象序列化： {{news[0].Keywords}} 转换后：<code>| json</code> <br> <code>{{news[0] | json}}</code></p>
+
+    <p>保留小数接收的参数格式为 <b>【 num-var | 最少整数位数 . 最少小数位数 - 最多小数位数】</b>，<code>| number:'2.3-5'</code>保留3 ~
+        5位小数：{{number | number:'2.3-5'}}</p>
+
+
+    <br><br><br>
+    <h2>事件绑定：(事件名)="事件函数()" {{color}}</h2>
+    <button (click)="Alert($event)">点击事件</button>
+    <button (click)="bgColor()">点击变换背景色</button>
+    <button [ngStyle]="{'background-color': color}" (mouseover)="bgColor()">鼠标指向多试试</button>
+
+    <br><br><br>
+    <h2>表单事件、事件对象：(事件名)="事件函数($event)" {{color}}</h2>
+    keyDown：<input type="text" (keydown)="keyDown($event)" placeholder="请在这里输入内容！">
+    {{keyCode | uppercase}}，你输入的内容：{{inputStr}} <br>
+    keyUp：<input type="text" (keydown)="keyUp($event)" [(ngModel)]="inputVal" placeholder="请在这里输入内容！">
+
+    <br><br><br>
+    <h2>双向数据绑定：[(ngModel)]="inputVal" 【MVVM 即Model-View-ViewModel的简写，Model改变时 会影响View，而View改变时 也会影响Model】 它只针对表单有效！！
+    </h2>
+    <h3>{{twoWay}}</h3>
+    <input type="text" [(ngModel)]="inputVal" placeholder="请在这里输入内容！"> <span contenteditable>{{inputVal}}</span>
+
+
+    <br><br><br>
+    <h2>指令：【 *ngIf=""、*ngFor=""、[ngSwitch]="" 】</h2>
+
+    <h3>条件渲染：*ngIf="true" 可以加在任意标签上【注：没有 *ngElse 哦，如果要else的话就 取反! *ngIf="!true"】</h3>
+    <p *ngIf="ngIf">
+        <b>true 条件为真时走这里！</b>
+    </p>
+    <p *ngIf="!ngIf">
+        <b>false 条件为假时走这里！</b>
+    </p>
+
+
+    <h3>选择条件渲染：[ngSwitch]="" | *ngSwitchCase="" | *ngSwitchDefault </h3>
+    <ul [ngSwitch]="ngSwitch">
+        <li *ngSwitchCase="1">
+            <h2>等于1时走这里！</h2>
+        </li>
+        <li *ngSwitchCase="2">
+            <h2>等于2时走这里！</h2>
+        </li>
+        <li *ngSwitchCase="3">
+            <h2>等于3时走这里！</h2>
+        </li>
+        <li *ngSwitchDefault>
+            <h2>以上都不满足时走这里！</h2>
+        </li>
+    </ul>
+
+
+    <h3>列表循环渲染：*ngFor="let item of list; let i = index;" i 就是下标索引</h3>
+    <ul>
+        <li *ngFor="let item of news" style="margin: 30px;">
+            <h4>{{item.title}}</h4>
+            <p style="color: red; line-height: 30px;" [innerHTML]="item.content"></p>
+            <ul style="padding-left: 50px; color: green; line-height: 30px;">
+                <li *ngFor="let o of item.Keywords; let i = index;">
+                    {{i + 1}}、
+                    <a *ngIf="o.href" [href]="o.href" target="_blank" rel="noopener noreferrer">{{o.name}}</a>
+                    <span *ngIf="!o.href">{{o.name}}</span>
+                    <time *ngIf="o.time"> {{o.time | date: 'yyyy-mm-dd hh: mm: ss'}}</time>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</section>

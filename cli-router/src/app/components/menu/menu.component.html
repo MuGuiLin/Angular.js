@@ -1,0 +1,5 @@
+<div class="menu">
+  <menu>
+    <a *ngFor="let o of menu" [routerLink]="[ o.path ]" routerLinkActive="active">{{o.name}} <i class="glyphicon glyphicon-triangle-right" aria-hidden="true"></i></a>
+  </menu>
+</div>
