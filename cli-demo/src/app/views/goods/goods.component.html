@@ -1,6 +1,55 @@
 <h1>产品页：/goods</h1>
 <hr>
 <section class="goods">
+    <h3>路由与子路由(嵌套路由)，在app-routing.module.ts文件中配置</h3>
+    <pre>
+        <code>
+
+            // 1、选引入组件 或 页面 
+            import {{ FormComponent } from './components/form/form.component';
+            import { HomeComponent } from './views/home/home.component';
+
+
+            // 2、在路由表中配置路由
+            const routes: Routes = [
+                {
+                    path: 'home', component: HomeComponent,
+
+                    // 路由嵌套(父子路由)
+                    children: [
+                        { path: 'form', component: FormComponent },
+                        { path: 'todolist', component: ToDoListComponent },
+                        { path: 'search', component: SearchComponent },
+                        { path: 'rxjs', component: RxjsComponent },
+                        {
+                            path: '**',
+                            redirectTo: 'datadinding'    
+                        }
+                    ]
+                },
+                {
+                    path: 'news', component: NewsComponent
+                },
+                {
+                    path: 'newsinfo', component: NewsInfoComponent
+                },
+                {
+                    path: 'newsinfo/:id', component: NewsInfoComponent //设置动态路由传参的参数名
+                },
+                {
+                    path: 'goods', component: GoodsComponent
+                },
+                
+                // 默认路由： 当匹配不到路由时，加载对应的(如404)组件 或 跳转到某个路由
+                {
+                    path: '**',
+                    redirectTo: '/'           // 跳转路由
+                 // component: HomeComponent, // 加载组件
+                }
+            ];
+        </code>
+    </pre>
+
     <h3>1、标签get传参路由跳转：</h3>
 
     <pre>

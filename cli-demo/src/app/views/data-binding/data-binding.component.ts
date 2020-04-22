@@ -42,6 +42,7 @@ export class DataBindingComponent implements OnInit {
   public twoWay: string = `注：双向数据绑定 需要先在 app.module.ts中 引入 import {FormsModule} from '@angular/forms'; 再在添加到模块运行依赖中imports:[FormsModule]`;
 
   public inputVal: string = '';
+  
   protected news: any[] = [
     {
       id: Date.now(),

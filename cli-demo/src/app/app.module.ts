@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 // Angular核心模块
 import { NgModule } from '@angular/core';
 
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
+
 // Angular数据请求模块
 import { HttpClientModule, HttpClientJsonpModule } from "@angular/common/http";
 
@@ -24,29 +26,33 @@ import { AppRoutingModule } from './app-routing.module';
 // 根组件
 import { AppComponent } from './app.component';
 
-
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-import { HomeComponent } from './components/home/home.component';
-import { DataBindingComponent } from './components/data-binding/data-binding.component';
 import { FormComponent } from './components/form/form.component';
-
-import { DomComponent } from './components/dom/dom.component';
-import { Dom2Component } from './components/dom2/dom2.component';
-
-import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
-import { SearchComponent } from './components/search/search.component';
-
-import { TongXunComponent } from './components/tong-xun/tong-xun.component';
-import { LifeCycleComponent } from './components/life-cycle/life-cycle.component';
 import { RxjsComponent } from './components/rxjs/rxjs.component';
-import { DataInteractionComponent } from './components/data-interaction/data-interaction.component';
 
-import { NewsComponent } from './components/news/news.component';
+import { SearchComponent } from './components/search/search.component';
+import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
+
+import { HomeComponent } from './views/home/home.component';
+
+import { DataBindingComponent } from './views/data-binding/data-binding.component';
+import { DataInteractionComponent } from './views/data-interaction/data-interaction.component';
+
+import { DomComponent } from './views/dom/dom.component';
+import { Dom2Component } from './views/dom2/dom2.component';
+
+import { TongXunComponent } from './views/tong-xun/tong-xun.component';
+import { ViewChildComponent } from "./views/tong-xun/view-child/view-child.component";
+
+import { LifeCycleComponent } from './views/life-cycle/life-cycle.component';
+
+import { NewsComponent } from './views/news/news.component';
 import { NewsInfoComponent } from './views/news-info/news-info.component';
 import { GoodsComponent } from './views/goods/goods.component';
 import { GoodsInfoComponent } from './views/goods-info/goods-info.component';
+import { ZdyModuleComponent } from './views/zdy-module/zdy-module.component';
 
 
 // @NgModule装饰器, @NgModule接受一个元数据对象，告诉 Angular 如何编译和启动应用
@@ -65,13 +71,15 @@ import { GoodsInfoComponent } from './views/goods-info/goods-info.component';
     DomComponent,
     Dom2Component,
     TongXunComponent,
+    ViewChildComponent,
     LifeCycleComponent,
     RxjsComponent,
     DataInteractionComponent,
     NewsInfoComponent,
     DataBindingComponent,
     GoodsComponent,
-    GoodsInfoComponent
+    GoodsInfoComponent,
+    ZdyModuleComponent
   ],
 
   // 配置 注入 当前模块运行依赖的其他模块
@@ -87,6 +95,7 @@ import { GoodsInfoComponent } from './views/goods-info/goods-info.component';
   // 配置项目所需要的服务
   providers: [
     // AxiosService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     StorageService
   ],
 

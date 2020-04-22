@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-tong-xun',
-  templateUrl: './tong-xun.component.html',
-  styleUrls: ['./tong-xun.component.scss']
+  selector: 'app-view-child',
+  templateUrl: './view-child.component.html',
+  styleUrls: ['./view-child.component.scss']
 })
-export class TongXunComponent implements OnInit {
+export class ViewChildComponent implements OnInit {
 
   //接收父组件传过来的变量 注：接收时的变量名一定要和从父组件传过来的属性名要对应！！
   @Input() text: string;
@@ -17,7 +17,6 @@ export class TongXunComponent implements OnInit {
   // 接收父组件传过来的方法
   @Input() fn: any;
 
-
   // 接收父组件传过来的整个实例
   @Input() app: any;
 
@@ -27,9 +26,9 @@ export class TongXunComponent implements OnInit {
 
   public msg: string = '我是子组件中的变量数据';
 
-  public skill: any = {h5: 'vidoe, audio', cs3: 'flex, grid', es6: 'fetch, promise'};
+  public skill: any = { h5: 'vidoe, audio', cs3: 'flex, grid', es6: 'fetch, promise' };
 
-  constructor() { 
+  constructor() {
 
   }
 
@@ -39,7 +38,7 @@ export class TongXunComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-   console.info('监听到组件有数据发生变化！');
+    console.info('监听到组件有数据发生变化！');
   }
 
   runParentFn() {
@@ -57,7 +56,7 @@ export class TongXunComponent implements OnInit {
     console.log('-------获取父组件app实例的数据：', this.app.text);
 
     console.log('-------调用父组件app实例的方法：this.app.parentFn(666)', this.app.parentFn(666));
-    
+
     this.examples = this.app.json;
   }
 
@@ -66,3 +65,4 @@ export class TongXunComponent implements OnInit {
   }
 
 }
+

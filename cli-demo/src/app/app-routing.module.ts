@@ -3,24 +3,27 @@ import { Routes, RouterModule } from '@angular/router';
 
 // 路由模块：根据不同的url地址、参数 #，动态的让根组件挂载其对应的页面、组件，这就是一个单页面应用(运行速度快：页面、组件切换不刷新)！！
 
-import { HomeComponent } from './components/home/home.component';
 
-import { DataBindingComponent } from './components/data-binding/data-binding.component';
 import { FormComponent } from './components/form/form.component';
-import { DomComponent } from './components/dom/dom.component';
-import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
 import { SearchComponent } from './components/search/search.component';
-
-import { TongXunComponent } from './components/tong-xun/tong-xun.component';
-import { LifeCycleComponent } from './components/life-cycle/life-cycle.component';
+import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
 import { RxjsComponent } from './components/rxjs/rxjs.component';
-import { DataInteractionComponent } from './components/data-interaction/data-interaction.component';
 
-import { NewsComponent } from './components/news/news.component';
+import { HomeComponent } from './views/home/home.component';
+import { DomComponent } from './views/dom/dom.component';
+
+import { DataBindingComponent } from './views/data-binding/data-binding.component';
+import { DataInteractionComponent } from './views/data-interaction/data-interaction.component';
+
+import { TongXunComponent } from './views/tong-xun/tong-xun.component';
+import { LifeCycleComponent } from './views/life-cycle/life-cycle.component';
+
+import { NewsComponent } from './views/news/news.component';
 import { NewsInfoComponent } from './views/news-info/news-info.component';
 
 import { GoodsComponent } from "./views/goods/goods.component";
 import { GoodsInfoComponent } from "./views/goods-info/goods-info.component";
+import { ZdyModuleComponent } from './views/zdy-module/zdy-module.component';
 
 const routes: Routes = [
   {
@@ -36,6 +39,7 @@ const routes: Routes = [
       { path: 'lifecycle', component: LifeCycleComponent },
       { path: 'rxjs', component: RxjsComponent },
       { path: 'getdata', component: DataInteractionComponent },
+      { path: 'zdymodule', component: ZdyModuleComponent },
       {
         path: '**',
         // component: HomeComponent,    // 加载组件
