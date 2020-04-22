@@ -1,0 +1,43 @@
+<section class="user">
+  <div class="mdui-tab mdui-tab-full-width" mdui-tab>
+    <a class="mdui-ripple" [routerLink]="[ '/user/useraddress' ]">收贷地址</a>
+    <a class="mdui-ripple" [routerLink]="[ '/user/userorder' ]">我的订单</a>
+    <a class="mdui-ripple" [routerLink]="[ '/user/usersetup' ]">个人设置</a>
+    <a class="mdui-ripple" [routerLink]="[ '/user/usersetup' ]">权限分配</a>
+  </div>
+  
+  <div id="example1-tab1" class="mdui-p-a-2">
+    <div class="mdui-textfield">
+      <i class="mdui-icon material-icons">email</i>
+      <input class="mdui-textfield-input" type="email" placeholder="Email" />
+    </div>
+
+    <!-- 固定标签 -->
+    <div class="mdui-textfield">
+      <i class="mdui-icon material-icons">account_circle</i>
+      <label class="mdui-textfield-label">User name</label>
+      <input class="mdui-textfield-input" type="text" />
+      <div class="mdui-textfield-helper">Helper Text</div>
+    </div>
+
+    <!-- 浮动标签、多行文本框 -->
+    <div class="mdui-textfield mdui-textfield-floating-label">
+      <i class="mdui-icon material-icons">textsms</i>
+      <label class="mdui-textfield-label">Message</label>
+      <textarea class="mdui-textfield-input"></textarea>
+    </div>
+
+    <!-- 禁用状态 -->
+    <div class="mdui-textfield">
+      <i class="mdui-icon material-icons">lock</i>
+      <input class="mdui-textfield-input" type="text" placeholder="Disabled" disabled />
+    </div>
+  </div>
+  <div id="example1-tab2" class="mdui-p-a-2">shopping content</div>
+  <div id="example1-tab3" class="mdui-p-a-2">images content</div>
+  <div id="example1-tab3" class="mdui-p-a-2">order admin</div>
+
+  <router-outlet></router-outlet>
+
+
+</section>

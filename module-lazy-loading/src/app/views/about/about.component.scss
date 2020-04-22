@@ -1,0 +1,11 @@
+.about {
+    .card {
+        display: flex;
+        .mdui-card {
+            margin: 20px;
+        }
+    }
+}
+.mdui-card-header-avatar {
+    border-radius: initial;
+}

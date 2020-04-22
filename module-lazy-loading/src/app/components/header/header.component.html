@@ -1,0 +1,8 @@
+<header class="mdui-appbar">
+    <nav class="mdui-tab mdui-color-purple" mdui-tab>
+        <a class="mdui-ripple" *ngFor="let item of nav" [routerLink]="[ item.path ]" routerLinkActive="mdui-ripple-white">
+            <i class="mdui-icon material-icons">{{ item.icon }}</i>
+            <label>{{ item.name }}</label>
+        </a>
+    </nav>
+</header>
