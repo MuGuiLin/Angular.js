@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 
 @Component({
@@ -55,8 +55,64 @@ export class SearchComponent implements OnInit {
 
   };
 
+  httpGet() {
+    // subscribe 是Rxjs中的封装的
+
+    let val = '青花瓷';
+    let api = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&w=' + val + '&zhidaqu=1&catZhida=1&t=0&flag=1&ie=utf-8&sem=1&aggr=0&perpage=20&n=20&p=1&remoteplace=txt.mqq.all&_=1520833663464';
+    // let api = 'http://localhost:4200/api/soso/fcgi-bin/search_for_qq_cp?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&w=' + val + '&zhidaqu=1&catZhida=1&t=0&flag=1&ie=utf-8&sem=1&aggr=0&perpage=20&n=20&p=1&remoteplace=txt.mqq.all&_=1520833663464';
+    
+    const Headers: any = { headers: new HttpHeaders({ 'Content-Type': 'application/json', "referer": 'https://c.y.qq.com/', "host": 'c.y.qq.com' }) };
+
+    this.http.jsonp(api, 'callback', Headers).subscribe((res: any) => {
+      console.log(res);
+
+      if (res && 0 < res.s.length) {
+        this.keyWordsList = res.s;
+      } else {
+        this.keyWordsList.length = 0;
+      }
+    });
+
+    // return;
+
+    // let api = `http://localhost:4200/api/splcloud/fcgi-bin/smartbox_new.fcg?key=${this.keyWords}`;
+    // let api = `http://localhost:4200/api/soso/fcgi-bin/client_search_cp?p=1&n=2&w=没那么简单&format=json`;
+    // this.http.jsonp(api, 'cb').subscribe((res: any) => {
+    //   if (res && 0 < res.s.length) {
+    //     this.keyWordsList = res.s;
+    //   } else {
+    //     this.keyWordsList.length = 0;
+    //   }
+    //   console.log(res);
+    // });
+    // return;
+    // this.http.get(api, {
+    //   Headers
+      // params: {
+      //   is_xml: 0,
+      //   key: this.keyWords,
+      //   g_tk_new_20200303: 5381,
+      //   g_tk: 5381,
+      //   loginUin: 0,
+      //   hostUin: 0,
+      //   format: 'json',
+      //   inCharset: 'utf8',
+      //   outCharset: 'utf-8',
+      //   notice: 0,
+      //   platform: 'yqq.json',
+      //   needNewCode: 0
+      // }
+    // }).subscribe((res: any) => {
+    //   console.log(res);
+    // })
+
+
+  };
+
   searchInput() {
-    this.debounce(this.keyListAjax(), 5000);
+    this.httpGet()
+    // this.debounce(this.keyListAjax(), 5000);
   };
 
   onSelect(par) {

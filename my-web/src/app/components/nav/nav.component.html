@@ -1,0 +1,3 @@
+<nav class="nav">
+    <a *ngFor="let o of nav" [routerLink]="[ o.path ]" routerLinkActive="active">{{o.name}}</a>
+</nav>
