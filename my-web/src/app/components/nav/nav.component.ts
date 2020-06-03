@@ -8,13 +8,27 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   public nav: any[] = [
-    { path: '/about', name: '关于我', icon: 'address card' },
-    { path: '/blog', name: '博客', icon: 'book' },
-    { path: '/chat', name: '聊天室', icon: 'comments' },
-    { path: '/tv', name: '电视', icon: 'tv' },
-    { path: 'https://github.com/MuGuiLin', name: 'GitHub', icon: 'github' },
-    { path: 'https://blog.csdn.net/muguli2008', name: 'CSDN', icon: 'cuttlefish' },
-    { path: '/nav', name: '工具导航', icon: 'telegram plane' }
+    {
+      path: '/about', name: '关于我', icon: 'address card', link: false
+    },
+    {
+      path: '/blog', name: '博客', icon: 'book', link: false
+    },
+    {
+      path: '/chat', name: '聊天室', icon: 'comments', link: false
+    },
+    {
+      path: '/tv', name: '电视', icon: 'tv', link: false
+    },
+    {
+      path: '//github.com/MuGuiLin', name: 'GitHub', icon: 'github', link: true
+    },
+    {
+      path: '//blog.csdn.net/muguli2008', name: 'CSDN', icon: 'cuttlefish', link: true
+    },
+    {
+      path: '/nav', name: '工具导航', icon: 'telegram plane', link: false
+    }
   ];
 
   constructor() {

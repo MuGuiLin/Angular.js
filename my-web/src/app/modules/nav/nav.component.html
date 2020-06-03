@@ -1,1 +1,9 @@
-<p>nav works!</p>
+<section class="nav-page">
+    <nav>
+        <ul>
+            <li *ngFor="let o of nav">
+                <a [href]="[o.href]" target="_blank"><i class="{{o.icon}} icon"></i> {{o.name}}</a>
+            </li>
+        </ul>
+    </nav>
+</section>
