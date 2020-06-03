@@ -18,6 +18,9 @@ const routes: Routes = [
     path: 'nav', loadChildren: './modules/nav/nav.module#NavModule'
   },
   {
+    path: 'tv', loadChildren: './modules/tv/tv.module#TvModule'
+  },
+  {
     path: '**', redirectTo: 'home'
   }
 ];

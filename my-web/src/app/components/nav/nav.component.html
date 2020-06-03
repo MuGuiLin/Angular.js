@@ -1,3 +1,4 @@
 <nav class="nav">
-    <a *ngFor="let o of nav" [routerLink]="[ o.path ]" routerLinkActive="active">{{o.name}}</a>
+    <a *ngFor="let o of nav" [routerLink]="[ o.path ]" routerLinkActive="active"><i class="{{o.icon}} icon"></i> {{o.name}}</a>
+    <!-- <a *ngFor="let o of nav" [href]="[ o.path ]" target="_blank"><i class="{{o.icon}} icon"></i> {{o.name}}</a> -->
 </nav>

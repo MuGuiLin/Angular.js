@@ -30,7 +30,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/plugin/jquery-3.5.0.min.js",
+              "src/assets/semantic-ui/js/semantic.min.js",
+              "src/assets/aliplayer/js/aliplayer-min.js"
+            ]
           },
           "configurations": {
             "production": {
