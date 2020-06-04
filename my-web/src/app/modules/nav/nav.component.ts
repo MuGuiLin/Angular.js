@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import nav from "./nav.navdata";
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -7,59 +9,65 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  public nav: any[] = [
-    {
-      href: '//tinypng.com', name: '图片压缩', icon: 'address card'
-    },
-    {
-      href: '//tool.lu', name: '在线工具', icon: 'book'
-    },
-    {
-      href: '//tool.oschina.net', name: '在线工具', icon: 'comments'
-    },
-    {
-      href: '//www.bootcdn.cn', name: 'BootCDN', icon: 'tv'
-    },
-    {
-      href: '//github.com', name: 'GitHub', icon: 'github'
-    },
-    {
-      href: '//blog.csdn.net', name: 'CSDN', icon: 'cuttlefish'
-    },
-    {
-      href: '//json.cn', name: 'JSON', icon: 'telegram plane'
-    },
-    {
-      href: '//www.runoob.com', name: ' 菜鸟教程', icon: 'address card'
-    },
-    {
-      href: '//caniuse.com', name: '浏览器支持情况', icon: 'book'
-    },
-    {
-      href: '//developer.mozilla.org/zh-CN', name: 'MDN Web Docs', icon: 'comments'
-    },
-    {
-      href: '//www.npmjs.com', name: 'Npm', icon: 'tv'
-    },
-    {
-      href: '//www.51cto.com', name: '51CTO', icon: 'github'
-    },
-    {
-      href: '//www.w3school.com.cn', name: 'W3CSHOOL', icon: 'cuttlefish'
-    },
-    {
-      href: '//www.w3cschool.cn', name: 'W3CSHOOL', icon: 'cuttlefish'
-    },
-    {
-      href: '//www.w3cplus.com', name: 'W3CPLUS', icon: 'cuttlefish'
-    },
-    {
-      href: '//www.w3chtml.com/', name: 'W3CHTML', icon: 'telegram plane'
-    }
-  ];
-  constructor() { }
+  public nav: any[] = nav;
+
+  public tree: any[];
+
+  constructor() {
+
+  }
 
   ngOnInit() {
+    this.tree = this.FlatToTree(nav, 0);
+    console.log(this.tree);
+
+    let flat = this.TreeToFlat(this.tree);
+    console.log(flat);
+  }
+
+  // 扁平转树型数据结构
+  FlatToTree(data, pid) {
+    let result = [], temp;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].pid === pid) {
+        let obj = { id: data[i].id, pid: data[i].pid, name: data[i].name, href: data[i].href, icon: data[i].icon, children: [] };
+        temp = this.FlatToTree(data, data[i].id);
+        if (temp.length > 0) {
+          obj.children = temp;
+        }
+        result.push(obj);
+      }
+    }
+    return result;
+  }
+
+  // 树型转扁平数据结构
+  TreeToFlat(data) {
+    return data.reduce((arr, { id, pid, name, href, icon, children = [] }) => arr.concat([{ id, pid, name, href, icon }], this.TreeToFlat(children)), []);
+  }
+
+  // 获取父级
+  getParent(data, id) {
+    let self = this.getSelf(data, id);
+    return this.getSelf(data, self.pid);
+  }
+  // 获取所有父级
+  getAllParent(data, id) {
+    let parent = this.getParent(data, id);
+    let allParent = [];
+    while (parent) {
+      allParent.unshift(parent);
+      parent = this.getParent(data, parent.id);
+    }
+    return allParent;
+  }
+  // 获取自己
+  getSelf(data, id) {
+    return data.filter(item => id == item.id);
+  }
+  // 获取子级
+  getChild(data, pid) {
+    return data.filter(item => pid == item.pid);
   }
 
 }
