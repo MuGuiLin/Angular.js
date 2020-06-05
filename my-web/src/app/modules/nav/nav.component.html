@@ -1,7 +1,7 @@
 <section class="nav-page">
     <div class="nav-box">
         <nav *ngFor="let t of tree">
-            <h2>{{t.name}}</h2>
+            <h2>{{t.id}}：{{t.name}}</h2>
             <ul *ngIf="t.children">
                 <li *ngFor="let o of t.children">
                     <a [href]="[o.href]" target="_blank"><i class="{{o.icon}} icon"></i> {{o.name}}</a>
