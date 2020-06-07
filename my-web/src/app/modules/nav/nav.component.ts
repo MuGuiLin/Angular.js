@@ -13,6 +13,12 @@ export class NavComponent implements OnInit {
 
   public tree: any[];
 
+  public keyWords: string = '';
+
+  public history: any[] = [];
+
+  public keyWordsList: any[] = [];
+
   constructor() {
 
   }
@@ -23,6 +29,11 @@ export class NavComponent implements OnInit {
 
     let flat = this.TreeToFlat(this.tree);
     console.log(flat);
+  }
+
+  onSearchFn() {
+    // window.location.href = `https://www.baidu.com/s?wd=${this.keyWords}`;
+    window.open(`https://www.baidu.com/s?wd=${this.keyWords}`);
   }
 
   // 扁平转树型数据结构

@@ -88,6 +88,11 @@
 		ng g component components/header 			// 注：组件目录名(一般为components)
 		ng g component components/menu				// 创建菜单组件
 		
+		
+创建模块：
+		ng g m modules/chat --routing               // 创建模块并添加路由
+ 
+		
 	注：通过以上两个命令后，系统会在src/app目录下生成一个components目录，而目录下就是刚创建的两个组件 header 和 menu，目录下分别是 结构：html, 样式：css，业务逻辑：ts，单元测试：ts 这4个文件
 	
 	

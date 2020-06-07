@@ -1,10 +1,16 @@
 <section class="nav-page">
+    <div class="search-box">
+        <div class="search-dom">
+            <input type="search" name="keyWords" [(ngModel)]="keyWords" placeholder="请输入要搜索的关键字！" />
+            <button type="button" (click)="onSearchFn()"><i class="fa fa-search"></i>搜 索</button>
+        </div>
+    </div>
     <div class="nav-box">
         <nav *ngFor="let t of tree">
-            <h2>{{t.id}}：{{t.name}}</h2>
+            <h1 title="{{t.id}}">{{t.name}}</h1>
             <ul *ngIf="t.children">
                 <li *ngFor="let o of t.children">
-                    <a [href]="[o.href]" target="_blank"><i class="{{o.icon}} icon"></i> {{o.name}}</a>
+                    <a [href]="[o.href]" target="_blank"><img [src]="o.icon ?  '../../../assets/nav/'+ o.icon : '../../../assets/nav/Browser.png'" />{{o.name}}</a>
                 </li>
             </ul>
         </nav>

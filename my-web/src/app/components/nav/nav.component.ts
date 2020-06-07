@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
       path: '/chat', name: '聊天室', icon: 'comments', link: false
     },
     {
-      path: '/tv', name: '电视', icon: 'tv', link: false
+      path: '/tv', name: '看电视', icon: 'tv', link: false
     },
     {
       path: '//github.com/MuGuiLin', name: 'GitHub', icon: 'github', link: true
@@ -27,7 +27,7 @@ export class NavComponent implements OnInit {
       path: '//blog.csdn.net/muguli2008', name: 'CSDN', icon: 'cuttlefish', link: true
     },
     {
-      path: '/nav', name: '工具导航', icon: 'telegram plane', link: false
+      path: '/nav', name: '前栈导航', icon: 'telegram plane', link: false
     }
   ];
 

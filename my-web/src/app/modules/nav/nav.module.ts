@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from "@angular/forms";
 
 import { NavRoutingModule } from './nav-routing.module';
 import { NavComponent } from './nav.component';
@@ -9,7 +10,8 @@ import { NavComponent } from './nav.component';
   declarations: [NavComponent],
   imports: [
     CommonModule,
-    NavRoutingModule
+    NavRoutingModule,
+    FormsModule
   ]
 })
 export class NavModule { }

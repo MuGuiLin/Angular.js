@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
+import needle from "needle";
 
 @Component({
   selector: 'app-search',
@@ -18,6 +19,7 @@ export class SearchComponent implements OnInit {
 
   constructor(public http: HttpClient) {
     console.log(this);
+
 
   }
 
@@ -55,16 +57,33 @@ export class SearchComponent implements OnInit {
 
   };
 
+  needleData() {
+    let api = `http://www.kuwo.cn/api/www/search/searchKey?key=${this.keyWords}`;
+    // need.get(api, function(error, response) {
+    //   if (!error && response.statusCode == 200)
+    //     console.log(response.body);
+    // });
+
+    // this.mupiao('get', api)
+    //   .then(function (resp) {
+    //     // ...
+    //   })
+    //   .catch(function (err) {
+    //     // ...
+    //   });
+  }
+
   httpGet() {
     // subscribe 是Rxjs中的封装的
 
     let val = '青花瓷';
-    let api = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&w=' + val + '&zhidaqu=1&catZhida=1&t=0&flag=1&ie=utf-8&sem=1&aggr=0&perpage=20&n=20&p=1&remoteplace=txt.mqq.all&_=1520833663464';
-    // let api = 'http://localhost:4200/api/soso/fcgi-bin/search_for_qq_cp?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&w=' + val + '&zhidaqu=1&catZhida=1&t=0&flag=1&ie=utf-8&sem=1&aggr=0&perpage=20&n=20&p=1&remoteplace=txt.mqq.all&_=1520833663464';
-    
+    // let api = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&w=' + val + '&zhidaqu=1&catZhida=1&t=0&flag=1&ie=utf-8&sem=1&aggr=0&perpage=20&n=20&p=1&remoteplace=txt.mqq.all&_=1520833663464';
+    let api = 'api/soso/fcgi-bin/search_for_qq_cp?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&w=' + val + '&zhidaqu=1&catZhida=1&t=0&flag=1&ie=utf-8&sem=1&aggr=0&perpage=20&n=20&p=1&remoteplace=txt.mqq.all&_=1520833663464';
+
     const Headers: any = { headers: new HttpHeaders({ 'Content-Type': 'application/json', "referer": 'https://c.y.qq.com/', "host": 'c.y.qq.com' }) };
 
-    this.http.jsonp(api, 'callback', Headers).subscribe((res: any) => {
+    // this.http.jsonp(api, 'callback', Headers).subscribe((res: any) => {
+    this.http.jsonp(api, 'callback').subscribe((res: any) => {
       console.log(res);
 
       if (res && 0 < res.s.length) {
@@ -89,20 +108,20 @@ export class SearchComponent implements OnInit {
     // return;
     // this.http.get(api, {
     //   Headers
-      // params: {
-      //   is_xml: 0,
-      //   key: this.keyWords,
-      //   g_tk_new_20200303: 5381,
-      //   g_tk: 5381,
-      //   loginUin: 0,
-      //   hostUin: 0,
-      //   format: 'json',
-      //   inCharset: 'utf8',
-      //   outCharset: 'utf-8',
-      //   notice: 0,
-      //   platform: 'yqq.json',
-      //   needNewCode: 0
-      // }
+    // params: {
+    //   is_xml: 0,
+    //   key: this.keyWords,
+    //   g_tk_new_20200303: 5381,
+    //   g_tk: 5381,
+    //   loginUin: 0,
+    //   hostUin: 0,
+    //   format: 'json',
+    //   inCharset: 'utf8',
+    //   outCharset: 'utf-8',
+    //   notice: 0,
+    //   platform: 'yqq.json',
+    //   needNewCode: 0
+    // }
     // }).subscribe((res: any) => {
     //   console.log(res);
     // })
@@ -112,6 +131,7 @@ export class SearchComponent implements OnInit {
 
   searchInput() {
     this.httpGet()
+    // this.needleData();
     // this.debounce(this.keyListAjax(), 5000);
   };
 
