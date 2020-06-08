@@ -10,7 +10,7 @@
             <h1 title="{{t.id}}">{{t.name}}</h1>
             <ul *ngIf="t.children">
                 <li *ngFor="let o of t.children">
-                    <a [href]="[o.href]" target="_blank"><img [src]="o.icon ?  '../../../assets/nav/'+ o.icon : '../../../assets/nav/Browser.png'" />{{o.name}}</a>
+                    <a [href]="[o.href]" target="_blank" title="{{o.desc}}"><img [src]="o.icon ?  '../../../assets/nav/'+ o.icon : '../../../assets/nav/Browser.png'" />{{o.name}}</a>
                 </li>
             </ul>
         </nav>

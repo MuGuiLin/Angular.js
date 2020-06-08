@@ -41,7 +41,7 @@ export class NavComponent implements OnInit {
     let result = [], temp;
     for (let i = 0; i < data.length; i++) {
       if (data[i].pid === pid) {
-        let obj = { id: data[i].id, pid: data[i].pid, name: data[i].name, href: data[i].href, icon: data[i].icon, children: [] };
+        let obj = { id: data[i].id, pid: data[i].pid, name: data[i].name, href: data[i].href, icon: data[i].icon, children: [], desc: data[i].desc };
         temp = this.FlatToTree(data, data[i].id);
         if (temp.length > 0) {
           obj.children = temp;
@@ -54,7 +54,7 @@ export class NavComponent implements OnInit {
 
   // 树型转扁平数据结构
   TreeToFlat(data) {
-    return data.reduce((arr, { id, pid, name, href, icon, children = [] }) => arr.concat([{ id, pid, name, href, icon }], this.TreeToFlat(children)), []);
+    return data.reduce((arr, { id, pid, name, href, icon, children = [], desc }) => arr.concat([{ id, pid, name, href, icon, desc }], this.TreeToFlat(children)), []);
   }
 
   // 获取父级

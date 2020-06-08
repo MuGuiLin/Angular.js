@@ -885,6 +885,14 @@ export default [
     {
         id: 900002,
         pid: 9,
+        name: 'Utils.js',
+        href: '//www.npmjs.com/package/utilsjs',
+        icon: '',
+        desc: 'js常用小功能工具集'
+    },
+    {
+        id: 900002,
+        pid: 9,
         name: 'Chart.js',
         href: '//chartjs.cn',
         icon: ''
@@ -932,7 +940,15 @@ export default [
         icon: ''
     },
     {
-        id: 900002,
+        id: 90000123,
+        pid: 9,
+        name: 'Anime.js',
+        href: '//animejs.com',
+        icon: '',
+        desc: '强大的动画库插件，可以和CSS3,SVG,DOM和JS一起工作,制作出各种高性能,平滑过渡的动画效果'
+    },
+    {
+        id: 90000456,
         pid: 9,
         name: 'Video.js',
         href: '//videojs.com',
