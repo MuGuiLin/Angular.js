@@ -11,6 +11,8 @@
                 |___/
 ```
 
+npm cache verify    // 清除npm缓存
+
 注：在此之前请选安装好Node.js环境和npm包管理工具（注：一般在安装Node.js环境时npm默认自动就安装好了）
 
 这里实例的版本：
@@ -47,6 +49,7 @@
 	或
 	
 	yarn global add @angular/cli
+	
 	
 	
 ## 二、创建项目
