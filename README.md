@@ -1,5 +1,6 @@
-
 # Angular Cli的使用：
+
+[Angular DOC 文档简介](https://angular.io/docs)，[Angular CLI 脚手架](https://angular.io/guide/cli-builder)
 
 	Angular Cli是Angular对一系列工程化构建工具的组合，能让开发者更容易的搭建Angular工程项目。
 ```
@@ -40,8 +41,9 @@ npm cache verify    // 清除npm缓存
 	
 	【以上命在使用前先加上ng 】
 
-	
-	
+
+​	
+​	
 ## 一、安装Angular Cli脚手架(如果已安装Angular Cli脚手架 此步略过)
 
 	npm install -g @angular/cli 【注：是全局安装，所以要加上-g】
@@ -49,9 +51,10 @@ npm cache verify    // 清除npm缓存
 	或
 	
 	yarn global add @angular/cli
-	
-	
-	
+
+
+​	
+​	
 ## 二、创建项目
 	1、ng new 项目名 （此时会在当前目录创建一个以上面的项目名为文件夹名的项目文件夹（里面包含相应的项目目录、模块、配置文件等））
 	
@@ -64,11 +67,11 @@ npm cache verify    // 清除npm缓存
 	3、Which stylesheet format would you like to use? CSS	//您想使用哪种样式表格式？CSS 选择css编译方式（原CSS、LASS、SASS）
 	
 	4、开始安装...
-	
+
 安装NG-ZORRO UI框架：
 
 	cd 项目名 -> ng add ng-zorro-antd
-	
+
 创建组件：
 	ng g			// 使用 ng g命令可以查看，可以通过命令来创建的组件、菜单、类、服务等
 		appShell
@@ -94,39 +97,42 @@ npm cache verify    // 清除npm缓存
 		
 创建模块：
 		ng g m modules/chat --routing               // 创建模块并添加路由
- 
-		
+
+
 	注：通过以上两个命令后，系统会在src/app目录下生成一个components目录，而目录下就是刚创建的两个组件 header 和 menu，目录下分别是 结构：html, 样式：css，业务逻辑：ts，单元测试：ts 这4个文件
-	
-	
+
+
+​	
 ## 三、运行、打包【注：以下命令要在项目根目录执行】
 	0、cd 项目名
 	
 	1、运行（启动）：
 		ng serve 或 npm start  (默认监听 http://localhost:4200 )
-	
-	
+
+
+​	
 	2、打包（构建）：
 		ng build 或 npm build （此时会在项目根目录生成一个叫dist的文件夹，这个里面的内容就是打包好的文件，可以直接在浏览器运行！）
 		
 		npm run-script build
-
+	
 		【注：打包后 路径错误导致页面404    解决：ng build  --base-href ./     //就是在ng build 后面加上 --base-href ./ 】
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+​	
+
+
+​	
+​	
+​	
+​	
+​	
+​	
+​	
+​	
+​	
+​	
+​	
+​	
+​	
+​	 
